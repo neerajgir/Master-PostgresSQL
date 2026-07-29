@@ -1,0 +1,1 @@
+-- CREATE DATABASE postgressql_basics;
