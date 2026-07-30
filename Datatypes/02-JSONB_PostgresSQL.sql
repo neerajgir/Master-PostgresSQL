@@ -7,28 +7,30 @@
 -- );
 
 
-INSERT INTO users (
-    name,
-    email,
-    preferences
-)
-VALUES (
-    'Adi Gir',
-    'adigir@gmail.com',
-    '{
-        "theme": "light",
-        "language": "sin-pk",
-        "notification": true
-    }'
-),
-(
-    'Paras Gir',
-    'parasgir@gmail.com',
-    '{
-        "theme": "dark",
-        "language": "urdu-pk",
-        "notification": true
-    }'
-);
+-- INSERT INTO users (
+--     name,
+--     email,
+--     preferences
+-- )
+-- VALUES (
+--     'Adi Gir',
+--     'adigir@gmail.com',
+--     '{
+--         "theme": "light",
+--         "language": "sin-pk",
+--         "notification": true
+--     }'
+-- ),
+-- (
+--     'Paras Gir',
+--     'parasgir@gmail.com',
+--     '{
+--         "theme": "dark",
+--         "language": "urdu-pk",
+--         "notification": true
+--     }'
+-- );
 
 SELECT * FROM users;
+
+SELECT name, preferences FROM users;
