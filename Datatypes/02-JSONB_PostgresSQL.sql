@@ -31,6 +31,7 @@
 --     }'
 -- );
 
-SELECT * FROM users;
+-- SELECT * FROM users;
 
 SELECT name, preferences FROM users;
+SELECT name, preferences->>'theme' FROM users;
