@@ -10,33 +10,44 @@
 --     is_available BOOLEAN DEFAULT true
 -- );
 
+-- INSERT INTO products (
+--     product_name,
+--     stock,
+--     ratings,
+--     price,
+--     is_available
+-- )
+-- VALUES (
+--     'Peanut Butter',
+--     100,
+--     4000,
+--     250,
+--     true
+-- ),
+-- (
+--     'Iphone 17 Pro',
+--     50,
+--     1000,
+--     200000,
+--     true
+-- ),
+-- (
+--     'Samsung S26 Ultra',
+--     20,
+--     5000,
+--     250000,
+--     true
+-- );
+
 INSERT INTO products (
     product_name,
-    stock,
     ratings,
-    price,
-    is_available
+    price
 )
 VALUES (
-    'Peanut Butter',
-    100,
-    4000,
-    250,
-    true
-),
-(
-    'Iphone 17 Pro',
-    50,
-    1000,
-    200000,
-    true
-),
-(
-    'Samsung S26 Ultra',
-    20,
+    'Google FitBit Air',
     5000,
-    250000,
-    true
+    15000
 );
 
 SELECT * FROM products;
