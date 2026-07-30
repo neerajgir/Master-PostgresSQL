@@ -46,4 +46,5 @@
 
 -- SELECT * FROM students;
 
-SELECT full_name FROM students;
+-- SELECT full_name FROM students;
+SELECT * FROM students WHERE is_active = TRUE;
