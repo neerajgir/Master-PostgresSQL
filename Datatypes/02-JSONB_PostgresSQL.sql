@@ -35,5 +35,6 @@
 
 SELECT name, preferences FROM users;
 -- SELECT name, preferences->>'theme' AS theme FROM users;
-SELECT name AS username, preferences->>'theme' AS theme FROM users;
+-- SELECT name AS username, preferences->>'theme' AS theme FROM users;
+SELECT name AS username, preferences->>'theme' AS theme, preferences->>'language' AS user_language FROM users;
 
