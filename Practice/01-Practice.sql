@@ -1,9 +1,47 @@
-CREATE TABLE students (
-    id SERIAL,
-    full_name VARCHAR(255) NOT NULL,
-    agr INT,
-    email VARCHAR(255) UNIQUE,
-    is_active BOOLEAN DEFAULT true,
-    created_at TIMESTAMP DEFAULT NOW()
-)
+-- CREATE TABLE students (
+--     id SERIAL,
+--     full_name VARCHAR(255) NOT NULL,
+--     agr INT,
+--     email VARCHAR(255) UNIQUE,
+--     is_active BOOLEAN DEFAULT true,
+--     created_at TIMESTAMP DEFAULT NOW()
+-- )
 
+INSERT INTO students (
+    full_name,
+    agr,
+    email,
+    is_active
+)
+VALUES (
+    'Piyu',
+    '21',
+    'piyu@gmail.com',
+    true
+),
+(
+    'Om',
+    '18',
+    'om22@gmail.com',
+    false
+),
+(
+    'Kumar',
+    '26',
+    'kumar33@gmail.com',
+    true
+),
+(
+    'Rohan',
+    '22',
+    'rohan121@gmail.com',
+    false
+),
+(
+    'Bharat',
+    '20',
+    'bharat22@gmail.com',
+    true
+);
+
+SELECT * FROM students;
