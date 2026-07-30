@@ -424,6 +424,19 @@ dark
 
 ---
 
+`AS`
+
+Replace Name Of Column.
+
+```sql
+name AS 'username'
+```
+
+Output
+
+```
+name REPLACE username
+```
 # 📌 Quick Revision
 
 ✅ `SERIAL` → Auto Increment ID
