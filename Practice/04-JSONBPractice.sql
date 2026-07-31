@@ -21,4 +21,5 @@
 
 -- SELECT * FROM customers;
 
-SELECT profile-> 'city' AS city FROM customers;
+-- SELECT profile-> 'city' AS city FROM customers;
+-- SELECT profile->> 'city' AS city FROM customers; return as text
