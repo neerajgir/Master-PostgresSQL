@@ -13,16 +13,16 @@
 -- VALUES (
 --     'Neeraj',
 --     '{
---         "city": "Karachi",
---         "phone": "03332203040",
---         "age": 24    
+--         "skills": ["HTML", "CSS", "JS", "REACT", "NODEJS"]  
 --     }'
 -- );
 
 -- SELECT * FROM customers;
 
+SELECT profile->'skills'->>0 AS Skills FROM customers;
+SELECT profile->'skills'->>1 AS Skills FROM customers;
 -- SELECT profile-> 'city' AS city FROM customers;
 -- SELECT profile->> 'city' AS city FROM customers; return as text
 
-SELECT profile->> 'phone' AS Phone FROM customers;
-SELECT profile->> 'age' AS Age FROM customers;
+-- SELECT profile->> 'phone' AS Phone FROM customers;
+-- SELECT profile->> 'age' AS Age FROM customers;
