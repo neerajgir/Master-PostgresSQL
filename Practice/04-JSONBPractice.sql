@@ -6,17 +6,19 @@
 -- );
 
 
-INSERT INTO customers (
-    name,
-    profile
-)
-VALUES (
-    'Neeraj',
-    '{
-        "city": "Karachi",
-        "phone": "03332203040",
-        "age": 24    
-    }'
-);
+-- INSERT INTO customers (
+--     name,
+--     profile
+-- )
+-- VALUES (
+--     'Neeraj',
+--     '{
+--         "city": "Karachi",
+--         "phone": "03332203040",
+--         "age": 24    
+--     }'
+-- );
 
-SELECT * FROM customers;
+-- SELECT * FROM customers;
+
+SELECT profile-> 'city' AS city FROM customers;
