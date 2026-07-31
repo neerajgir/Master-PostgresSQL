@@ -1,7 +1,7 @@
 -- CREATE TABLE products (
 --     id SERIAL,
 --     product_name VARCHAR(255) NOT NULL,
---     price NUMERIC,
+--     price NUMERIC(10,2),
 --     stock INT NOT NULL,
 --     category VARCHAR(255) NOT NULL,
 --     rating BIGINT 
