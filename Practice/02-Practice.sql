@@ -7,47 +7,49 @@
 --     rating BIGINT 
 -- )
 
-INSERT INTO products (
-    product_name,
-    price,
-    stock,
-    category,
-    rating
-)
-VALUES (
-    'Running Shoes',
-    1500,
-    100,
-    'Sports',
-    4.5
-),
-(
-    'Yoga Mat',
-    400,
-    100,
-    'Sports',
-    4.5
-),
-(
-    'Bluetooth Speaker',
-    1000,
-    200,
-    'Electronics',
-    4.5
-),
-(
-    'Coffee Maker',
-    1500,
-    50,
-    'Kitchen',
-    4.5
-),
-(
-    'External Hard Drive',
-    3000,
-    50,
-    'Electronics',
-    4.5
-);
+-- INSERT INTO products (
+--     product_name,
+--     price,
+--     stock,
+--     category,
+--     rating
+-- )
+-- VALUES (
+--     'Running Shoes',
+--     1500,
+--     100,
+--     'Sports',
+--     4.5
+-- ),
+-- (
+--     'Yoga Mat',
+--     400,
+--     100,
+--     'Sports',
+--     4.5
+-- ),
+-- (
+--     'Bluetooth Speaker',
+--     1000,
+--     200,
+--     'Electronics',
+--     4.5
+-- ),
+-- (
+--     'Coffee Maker',
+--     1500,
+--     50,
+--     'Kitchen',
+--     4.5
+-- ),
+-- (
+--     'External Hard Drive',
+--     3000,
+--     50,
+--     'Electronics',
+--     4.5
+-- );
 
-SELECT * FROM products;
+-- SELECT * FROM products;
+
+SELECT product_name, price FROM products;
