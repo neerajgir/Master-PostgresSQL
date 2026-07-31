@@ -52,4 +52,6 @@
 
 -- SELECT * FROM products;
 
-SELECT product_name, price FROM products;
+-- SELECT product_name, price FROM products;
+
+SELECT stock FROM products;
