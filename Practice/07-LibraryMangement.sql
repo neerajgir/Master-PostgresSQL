@@ -49,20 +49,42 @@
 -- ('Hina Shah', 'hina@example.com', TRUE),
 -- ('Hamza Iqbal', 'hamza@example.com', TRUE);
 
-INSERT INTO borrow_history (books_id, member_id, borrow_date, returned)
-VALUES
-(1, 1, '2026-07-01 10:30:00', TRUE),
-(2, 2, '2026-07-02 09:15:00', FALSE),
-(3, 3, '2026-07-03 14:20:00', TRUE),
-(4, 4, '2026-07-04 11:45:00', FALSE),
-(5, 5, '2026-07-05 16:10:00', TRUE),
-(6, 6, '2026-07-06 13:30:00', FALSE),
-(7, 7, '2026-07-07 12:00:00', TRUE),
-(8, 8, '2026-07-08 15:40:00', FALSE),
-(9, 9, '2026-07-09 09:50:00', TRUE),
-(10, 10, '2026-07-10 17:25:00', FALSE),
-(2, 1, '2026-07-11 10:00:00', TRUE),
-(5, 3, '2026-07-12 11:30:00', FALSE),
-(7, 2, '2026-07-13 14:00:00', TRUE),
-(1, 6, '2026-07-14 09:45:00', FALSE),
-(4, 8, '2026-07-15 16:20:00', TRUE);
+-- INSERT INTO borrow_history (books_id, member_id, borrow_date, returned)
+-- VALUES
+-- (1, 1, '2026-07-01 10:30:00', TRUE),
+-- (2, 2, '2026-07-02 09:15:00', FALSE),
+-- (3, 3, '2026-07-03 14:20:00', TRUE),
+-- (4, 4, '2026-07-04 11:45:00', FALSE),
+-- (5, 5, '2026-07-05 16:10:00', TRUE),
+-- (6, 6, '2026-07-06 13:30:00', FALSE),
+-- (7, 7, '2026-07-07 12:00:00', TRUE),
+-- (8, 8, '2026-07-08 15:40:00', FALSE),
+-- (9, 9, '2026-07-09 09:50:00', TRUE),
+-- (10, 10, '2026-07-10 17:25:00', FALSE),
+-- (2, 1, '2026-07-11 10:00:00', TRUE),
+-- (5, 3, '2026-07-12 11:30:00', FALSE),
+-- (7, 2, '2026-07-13 14:00:00', TRUE),
+-- (1, 6, '2026-07-14 09:45:00', FALSE),
+-- (4, 8, '2026-07-15 16:20:00', TRUE);
+
+-- SELECT * FROM books;
+-- SELECT title, price FROM books;
+-- SELECT title FROM books WHERE price > 20;
+-- SELECT title, stock FROM books WHERE stock > 5;
+-- SELECT * FROM members WHERE is_active = true;
+-- SELECT * FROM borrow_history WHERE returned = false;
+-- SELECT metadata->>'publisher' AS Publishers FROM books;
+-- SELECT title, metadata->>'pages' AS Pages FROM books; 
+-- SELECT COUNT(*) AS total_members FROM members;
+-- SELECT COUNT(*) FROM borrow_history WHERE returned = true;
+-- SELECT title, price FROM books WHERE price BETWEEN 15 AND 30;
+-- SELECT title, price FROM books ORDER BY price ASC;
+-- SELECT title, price FROM books ORDER BY price DESC LIMIT 5;
+-- SELECT * FROM members WHERE name LIKE 'A%'; 
+-- SELECT title, metadata->>'publisher' Publishers  FROM books WHERE metadata->>'publisher' = 'MIT Press';; 
+-- SELECT COUNT(*) FROM books WHERE stock > 10;
+-- SELECT COUNT(*) FROM books WHERE stock > 5;
+-- SELECT * FROM books WHERE title LIKE '%Code%';
+-- SELECT * FROM members WHERE is_active = true ORDER BY name ASC;
+-- SELECT title, metadata->>'language' AS Language FROM books;
+
