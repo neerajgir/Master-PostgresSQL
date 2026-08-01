@@ -36,15 +36,33 @@
 -- ('Eloquent JavaScript', 'Marijn Haverbeke', 27.99, 7, '{"language":"English","pages":472,"publisher":"No Starch Press"}'),
 -- ('Design Patterns', 'Erich Gamma', 42.00, 6, '{"language":"English","pages":395,"publisher":"Addison-Wesley"}');
 
-INSERT INTO members (name, email, is_active)
+-- INSERT INTO members (name, email, is_active)
+-- VALUES
+-- ('Ali Khan', 'ali@example.com', TRUE),
+-- ('Sara Ahmed', 'sara@example.com', TRUE),
+-- ('Ahmed Raza', 'ahmed@example.com', TRUE),
+-- ('Fatima Noor', 'fatima@example.com', FALSE),
+-- ('Usman Tariq', 'usman@example.com', TRUE),
+-- ('Ayesha Malik', 'ayesha@example.com', TRUE),
+-- ('Bilal Hussain', 'bilal@example.com', FALSE),
+-- ('Zain Ali', 'zain@example.com', TRUE),
+-- ('Hina Shah', 'hina@example.com', TRUE),
+-- ('Hamza Iqbal', 'hamza@example.com', TRUE);
+
+INSERT INTO borrow_history (books_id, member_id, borrow_date, returned)
 VALUES
-('Ali Khan', 'ali@example.com', TRUE),
-('Sara Ahmed', 'sara@example.com', TRUE),
-('Ahmed Raza', 'ahmed@example.com', TRUE),
-('Fatima Noor', 'fatima@example.com', FALSE),
-('Usman Tariq', 'usman@example.com', TRUE),
-('Ayesha Malik', 'ayesha@example.com', TRUE),
-('Bilal Hussain', 'bilal@example.com', FALSE),
-('Zain Ali', 'zain@example.com', TRUE),
-('Hina Shah', 'hina@example.com', TRUE),
-('Hamza Iqbal', 'hamza@example.com', TRUE);
+(1, 1, '2026-07-01 10:30:00', TRUE),
+(2, 2, '2026-07-02 09:15:00', FALSE),
+(3, 3, '2026-07-03 14:20:00', TRUE),
+(4, 4, '2026-07-04 11:45:00', FALSE),
+(5, 5, '2026-07-05 16:10:00', TRUE),
+(6, 6, '2026-07-06 13:30:00', FALSE),
+(7, 7, '2026-07-07 12:00:00', TRUE),
+(8, 8, '2026-07-08 15:40:00', FALSE),
+(9, 9, '2026-07-09 09:50:00', TRUE),
+(10, 10, '2026-07-10 17:25:00', FALSE),
+(2, 1, '2026-07-11 10:00:00', TRUE),
+(5, 3, '2026-07-12 11:30:00', FALSE),
+(7, 2, '2026-07-13 14:00:00', TRUE),
+(1, 6, '2026-07-14 09:45:00', FALSE),
+(4, 8, '2026-07-15 16:20:00', TRUE);
