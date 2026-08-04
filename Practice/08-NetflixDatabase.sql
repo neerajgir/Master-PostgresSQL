@@ -38,4 +38,4 @@
 -- actor 
 -- SELECT details->'cast'->>0 AS Cast FROM Movies;
 -- duration
--- SELECT details->>'duration' AS Duration FROM Movies;
+SELECT details->>'duration' AS Duration FROM Movies;
