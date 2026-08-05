@@ -1,6 +1,6 @@
 -- CREATE DATABASE postgressql_basics;
 
--- CREATE TABLE students (
+-- CREATE TABLE student (
 --     id SERIAL PRIMARY KEY,
 --     name TEXT NOT NULL,
 --     email TEXT NOT NULL UNIQUE,
@@ -8,7 +8,7 @@
 --     created_at TIMESTAMP DEFAULT NOW()
 -- );
 
--- SELECT * FROM students;
+-- SELECT * FROM student;
 
 -- INSERT INTO students (
 --     name,
@@ -21,6 +21,6 @@
 --     '19'
 -- )
 
--- SELECT * FROM students;
+-- SELECT * FROM student;
 
--- DROP TABLE students;
+-- DROP TABLE student;
