@@ -59,3 +59,16 @@ SELECT * FROM course_enrollment WHERE student_name ILIKE 'a%';
 -- Exclude names starting with 'Z'
 SELECT * FROM course_enrollment WHERE student_name NOT LIKE 'Z%';
 
+SELECT * FROM course_enrollment WHERE price > 1000;
+SELECT * FROM course_enrollment WHERE price < 2000;
+SELECT * FROM course_enrollment WHERE price <= 2000;
+SELECT * FROM course_enrollment WHERE price >= 2000;
+SELECT * FROM course_enrollment WHERE rating <= 5;
+SELECT * FROM course_enrollment WHERE rating != 5;
+
+SELECT * FROM course_enrollment WHERE level = 'Intermediate' AND completion_status = true;
+SELECT * FROM course_enrollment WHERE level = 'Beginner' OR level = 'Advance';
+
+SELECT * FROM course_enrollment WHERE course_name IN ('Docker & Kubernetes');
+
+SELECT * FROM course_enrollment WHERE price BETWEEN 3000 AND 4000;
