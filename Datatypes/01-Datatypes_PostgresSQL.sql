@@ -1,13 +1,25 @@
-CREATE TABLE course_enrollment (
-    enrollment_id SERIAL PRIMARY KEY,
-    student_name VARCHAR(50) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    course_name VARCHAR(50) NOT NULL,
-    level VARCHAR(20),
-    price NUMERIC(8,2) CHECK (price > 0),
-    enrolled_on DATE DEFAULT CURRENT_DATE,
-    completion_status BOOLEAN DEFAULT FALSE,
-    rating INT CHECK (rating BETWEEN 1 AND 5),
-    course_meta JSONB,
-    skills TEXT[]
-);
+-- CREATE TABLE course_enrollment (
+--     enrollment_id SERIAL PRIMARY KEY,
+--     student_name VARCHAR(50) NOT NULL,
+--     email VARCHAR(100) UNIQUE NOT NULL,
+--     course_name VARCHAR(50) NOT NULL,
+--     level VARCHAR(20),
+--     price NUMERIC(8,2) CHECK (price > 0),
+--     enrolled_on DATE DEFAULT CURRENT_DATE,
+--     completion_status BOOLEAN DEFAULT FALSE,
+--     rating INT CHECK (rating BETWEEN 1 AND 5),
+--     course_meta JSONB,
+--     skills TEXT[]
+-- );
+
+INSERT INTO course_enrollment (student_name, email, course_name, level, price, enrolled_on, completion_status, rating, course_meta, skills) VALUES
+('Rohan Malhotra', 'rohan.malhotra@example.com', 'PostgreSQL Bootcamp', 'Intermediate', 2999.00, '2026-01-15', TRUE, 5, '{"instructor": "Dr. Sen", "duration_weeks": 8}', ARRAY['SQL', 'PostgreSQL', 'Database Design']),
+('Isha Choudhury', 'isha.c@example.com', 'Python Fundamentals', 'Beginner', 1999.00, '2026-03-10', TRUE, 4, '{"instructor": "Prof. Rao", "duration_weeks": 6}', ARRAY['Python', 'Logic Building', 'Git']),
+('Kabir Deshmukh', 'kabir.d@example.com', 'Advanced Machine Learning', 'Advanced', 5999.00, '2026-05-20', FALSE, NULL, '{"instructor": "Dr. Sen", "duration_weeks": 12}', ARRAY['Python', 'Scikit-Learn', 'Math']),
+('Sanya Kapoor', 'sanya.k@example.com', 'UI/UX Design Masterclass', 'Intermediate', 3499.00, '2026-02-01', TRUE, 5, '{"instructor": "Ananya S.", "duration_weeks": 10}', ARRAY['Figma', 'Wireframing', 'Prototyping']),
+('Aditya Joshi', 'aditya.j@example.com', 'Docker & Kubernetes', 'Advanced', 4500.00, '2026-06-14', FALSE, NULL, '{"instructor": "Rajesh Kumar", "duration_weeks": 8}', ARRAY['Docker', 'Kubernetes', 'DevOps']),
+('Meera Pillai', 'meera.p@example.com', 'Full-Stack React & Node', 'Intermediate', 4999.00, '2026-04-18', TRUE, 4, '{"instructor": "Amit Verma", "duration_weeks": 16}', ARRAY['React', 'Node.js', 'Express', 'MongoDB']),
+('Devansh Saxena', 'devansh.s@example.com', 'Python Fundamentals', 'Beginner', 1999.00, '2026-07-01', FALSE, NULL, '{"instructor": "Prof. Rao", "duration_weeks": 6}', ARRAY['Python']),
+('Riya Singhal', 'riya.s@example.com', 'PostgreSQL Bootcamp', 'Intermediate', 2999.00, '2026-03-22', TRUE, 4, '{"instructor": "Dr. Sen", "duration_weeks": 8}', ARRAY['SQL', 'PostgreSQL']),
+('Arjun Bannerjee', 'arjun.b@example.com', 'Data Structures & Algorithms', 'Intermediate', 3999.00, '2026-01-10', TRUE, 5, '{"instructor": "Vikram Seth", "duration_weeks": 12}', ARRAY['Java', 'DSA', 'Problem Solving']),
+('Anika Murthy', 'anika.m@example.com', 'Cloud Architecture AWS', 'Advanced', 5500.00, '2026-05-05', FALSE, NULL, '{"instructor": "Rajesh Kumar", "duration_weeks": 10}', ARRAY['AWS', 'Cloud Security', 'Terraform']);
