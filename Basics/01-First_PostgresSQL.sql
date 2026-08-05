@@ -26,4 +26,8 @@
 
 -- Update 
 -- UPDATE student SET age = 20 WHERE id = 1;
+
+-- Delete
+-- DELETE FROM student WHERE id = 1;
+
 -- DROP TABLE student;
