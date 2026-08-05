@@ -12,14 +12,50 @@
 --     skills TEXT[]
 -- );
 
-INSERT INTO course_enrollment (student_name, email, course_name, level, price, enrolled_on, completion_status, rating, course_meta, skills) VALUES
-('Rohan Malhotra', 'rohan.malhotra@example.com', 'PostgreSQL Bootcamp', 'Intermediate', 2999.00, '2026-01-15', TRUE, 5, '{"instructor": "Dr. Sen", "duration_weeks": 8}', ARRAY['SQL', 'PostgreSQL', 'Database Design']),
-('Isha Choudhury', 'isha.c@example.com', 'Python Fundamentals', 'Beginner', 1999.00, '2026-03-10', TRUE, 4, '{"instructor": "Prof. Rao", "duration_weeks": 6}', ARRAY['Python', 'Logic Building', 'Git']),
-('Kabir Deshmukh', 'kabir.d@example.com', 'Advanced Machine Learning', 'Advanced', 5999.00, '2026-05-20', FALSE, NULL, '{"instructor": "Dr. Sen", "duration_weeks": 12}', ARRAY['Python', 'Scikit-Learn', 'Math']),
-('Sanya Kapoor', 'sanya.k@example.com', 'UI/UX Design Masterclass', 'Intermediate', 3499.00, '2026-02-01', TRUE, 5, '{"instructor": "Ananya S.", "duration_weeks": 10}', ARRAY['Figma', 'Wireframing', 'Prototyping']),
-('Aditya Joshi', 'aditya.j@example.com', 'Docker & Kubernetes', 'Advanced', 4500.00, '2026-06-14', FALSE, NULL, '{"instructor": "Rajesh Kumar", "duration_weeks": 8}', ARRAY['Docker', 'Kubernetes', 'DevOps']),
-('Meera Pillai', 'meera.p@example.com', 'Full-Stack React & Node', 'Intermediate', 4999.00, '2026-04-18', TRUE, 4, '{"instructor": "Amit Verma", "duration_weeks": 16}', ARRAY['React', 'Node.js', 'Express', 'MongoDB']),
-('Devansh Saxena', 'devansh.s@example.com', 'Python Fundamentals', 'Beginner', 1999.00, '2026-07-01', FALSE, NULL, '{"instructor": "Prof. Rao", "duration_weeks": 6}', ARRAY['Python']),
-('Riya Singhal', 'riya.s@example.com', 'PostgreSQL Bootcamp', 'Intermediate', 2999.00, '2026-03-22', TRUE, 4, '{"instructor": "Dr. Sen", "duration_weeks": 8}', ARRAY['SQL', 'PostgreSQL']),
-('Arjun Bannerjee', 'arjun.b@example.com', 'Data Structures & Algorithms', 'Intermediate', 3999.00, '2026-01-10', TRUE, 5, '{"instructor": "Vikram Seth", "duration_weeks": 12}', ARRAY['Java', 'DSA', 'Problem Solving']),
-('Anika Murthy', 'anika.m@example.com', 'Cloud Architecture AWS', 'Advanced', 5500.00, '2026-05-05', FALSE, NULL, '{"instructor": "Rajesh Kumar", "duration_weeks": 10}', ARRAY['AWS', 'Cloud Security', 'Terraform']);
+-- INSERT INTO course_enrollment (student_name, email, course_name, level, price, enrolled_on, completion_status, rating, course_meta, skills) VALUES
+-- ('Rohan Malhotra', 'rohan.malhotra@example.com', 'PostgreSQL Bootcamp', 'Intermediate', 2999.00, '2026-01-15', TRUE, 5, '{"instructor": "Dr. Sen", "duration_weeks": 8}', ARRAY['SQL', 'PostgreSQL', 'Database Design']),
+-- ('Isha Choudhury', 'isha.c@example.com', 'Python Fundamentals', 'Beginner', 1999.00, '2026-03-10', TRUE, 4, '{"instructor": "Prof. Rao", "duration_weeks": 6}', ARRAY['Python', 'Logic Building', 'Git']),
+-- ('Kabir Deshmukh', 'kabir.d@example.com', 'Advanced Machine Learning', 'Advanced', 5999.00, '2026-05-20', FALSE, NULL, '{"instructor": "Dr. Sen", "duration_weeks": 12}', ARRAY['Python', 'Scikit-Learn', 'Math']),
+-- ('Sanya Kapoor', 'sanya.k@example.com', 'UI/UX Design Masterclass', 'Intermediate', 3499.00, '2026-02-01', TRUE, 5, '{"instructor": "Ananya S.", "duration_weeks": 10}', ARRAY['Figma', 'Wireframing', 'Prototyping']),
+-- ('Aditya Joshi', 'aditya.j@example.com', 'Docker & Kubernetes', 'Advanced', 4500.00, '2026-06-14', FALSE, NULL, '{"instructor": "Rajesh Kumar", "duration_weeks": 8}', ARRAY['Docker', 'Kubernetes', 'DevOps']),
+-- ('Meera Pillai', 'meera.p@example.com', 'Full-Stack React & Node', 'Intermediate', 4999.00, '2026-04-18', TRUE, 4, '{"instructor": "Amit Verma", "duration_weeks": 16}', ARRAY['React', 'Node.js', 'Express', 'MongoDB']),
+-- ('Devansh Saxena', 'devansh.s@example.com', 'Python Fundamentals', 'Beginner', 1999.00, '2026-07-01', FALSE, NULL, '{"instructor": "Prof. Rao", "duration_weeks": 6}', ARRAY['Python']),
+-- ('Riya Singhal', 'riya.s@example.com', 'PostgreSQL Bootcamp', 'Intermediate', 2999.00, '2026-03-22', TRUE, 4, '{"instructor": "Dr. Sen", "duration_weeks": 8}', ARRAY['SQL', 'PostgreSQL']),
+-- ('Arjun Bannerjee', 'arjun.b@example.com', 'Data Structures & Algorithms', 'Intermediate', 3999.00, '2026-01-10', TRUE, 5, '{"instructor": "Vikram Seth", "duration_weeks": 12}', ARRAY['Java', 'DSA', 'Problem Solving']),
+-- ('Anika Murthy', 'anika.m@example.com', 'Cloud Architecture AWS', 'Advanced', 5500.00, '2026-05-05', FALSE, NULL, '{"instructor": "Rajesh Kumar", "duration_weeks": 10}', ARRAY['AWS', 'Cloud Security', 'Terraform']);
+
+SELECT * FROM course_enrollment;
+
+SELECT course_meta->>'instructor' AS Instructor FROM course_enrollment;
+
+SELECT * FROM course_enrollment WHERE 'React' = ANY(skills);
+
+SELECT * FROM course_enrollment WHERE level = 'Beginner';
+
+SELECT DISTINCT course_name FROM course_enrollment;
+
+SELECT student_name, price FROM course_enrollment ORDER BY price DESC;
+SELECT student_name, price FROM course_enrollment ORDER BY price ASC;
+
+SELECT * FROM course_enrollment ORDER BY enrolled_on ASC LIMIT 5;
+
+-- Names starting with 'A'
+SELECT * FROM course_enrollment WHERE student_name LIKE 'A%';
+-- Names ending with 'ena'
+SELECT * FROM course_enrollment WHERE student_name LIKE '%ena';
+
+-- Names containing 'an' anywhere
+SELECT * FROM course_enrollment WHERE student_name LIKE '%an%';
+
+-- Names with exactly 5 characters (4 any + 'a')
+SELECT * FROM course_enrollment WHERE student_name LIKE '____a';
+
+-- Names starting with 'A' or 'B', 3 chars long
+SELECT * FROM course_enrollment WHERE student_name LIKE '[AB]__';
+
+-- Case-insensitive (PostgreSQL uses ILIKE)
+SELECT * FROM course_enrollment WHERE student_name ILIKE 'a%';
+
+-- Exclude names starting with 'Z'
+SELECT * FROM course_enrollment WHERE student_name NOT LIKE 'Z%';
+
