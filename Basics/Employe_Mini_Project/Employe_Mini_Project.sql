@@ -1,0 +1,11 @@
+-- CREATE TABLE employees (
+--     emp_id SERIAL PRIMARY KEY,
+--     fname VARCHAR(50) NOT NULL,
+--     lname VARCHAR(50) NOT NULL,
+--     email VARCHAR(100) UNIQUE NOT NULL,
+--     dept VARCHAR(50) NOT NULL,
+--     salary NUMERIC(10, 2) CHECK (salary > 0),
+--     hire_date DATE NOT NULL DEFAULT CURRENT_DATE,
+--     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+-- );
