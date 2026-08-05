@@ -22,5 +22,8 @@
 -- )
 
 -- SELECT * FROM student;
+-- SELECT name, email FROM student;
 
+-- Update 
+-- UPDATE student SET age = 20 WHERE id = 1;
 -- DROP TABLE student;
