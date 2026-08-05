@@ -9,3 +9,17 @@
 --     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 --     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 -- );
+
+-- SELECT * FROM employees;
+
+-- INSERT INTO employees (fname, lname, email, dept, salary, hire_date) VALUES
+-- ('Aarav', 'Sharma', 'aarav.sharma@example.com', 'Engineering', 85000.00, '2024-03-15'),
+-- ('Diya', 'Patel', 'diya.patel@example.com', 'Human Resources', 62000.00, '2023-08-22'),
+-- ('Vihaan', 'Verma', 'vihaan.verma@example.com', 'Engineering', 92000.00, '2025-01-10'),
+-- ('Ananya', 'Iyer', 'ananya.iyer@example.com', 'Marketing', 58000.00, '2024-06-01'),
+-- ('Arjun', 'Nair', 'arjun.nair@example.com', 'Finance', 78000.00, '2022-11-14'),
+-- ('Zoya', 'Khan', 'zoya.khan@example.com', 'Data Science', 95000.00, '2024-09-18'),
+-- ('Sai', 'Reddy', 'sai.reddy@example.com', 'Operations', 65000.00, '2023-04-05'),
+-- ('Kavya', 'Joshi', 'kavya.joshi@example.com', 'Marketing', 60000.00, '2025-02-28'),
+-- ('Rohan', 'Gupta', 'rohan.gupta@example.com', 'Engineering', 88000.00, '2023-12-01'),
+-- ('Meera', 'Das', 'meera.das@example.com', 'Finance', 74000.00, '2024-07-19');
