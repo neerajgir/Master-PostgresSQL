@@ -72,3 +72,13 @@ SELECT * FROM course_enrollment WHERE level = 'Beginner' OR level = 'Advance';
 SELECT * FROM course_enrollment WHERE course_name IN ('Docker & Kubernetes');
 
 SELECT * FROM course_enrollment WHERE price BETWEEN 3000 AND 4000;
+
+SELECT COUNT(*) FROM course_enrollment;
+
+SELECT SUM(price) FROM course_enrollment;
+
+SELECT AVG(price) FROM course_enrollment;
+
+SELECT MIN(price) FROM course_enrollment;
+
+SELECT MAX(price) FROM course_enrollment;
