@@ -100,3 +100,20 @@ SELECT CONCAT(student_name, ' enrolled_in ', course_name) FROM course_enrollment
 SELECT SUBSTRING(email FROM 1 FOR 5) FROM course_enrollment;
 
 SELECT TRIM('   PostgreSQL   ');
+
+
+SELECT student_name, course_name, price
+FROM course_enrollment
+WHERE level = 'Intermediate'
+ORDER BY price DESC
+LIMIT 3;
+
+SELECT course_name, SUM(price) AS total_revenue FROM course_enrollment GROUP BY course_name;
+
+SELECT student_name, course_name FROM course_enrollment WHERE course_meta->>'instructor' = 'Rajesh Kumar';
+
+SELECT student_name, course_name FROM course_enrollment WHERE 'Git' = ANY(skills); 
+
+SELECT course_name, AVG(rating) AS avg_rating FROM course_enrollment WHERE completion_status = true GROUP BY course_name ORDER BY avg_rating DESC;
+
+SELECT course_name, COUNT(*) AS total_enrollments FROM course_enrollment GROUP BY course_name ORDER BY total_enrollments DESC LIMIT 1;
