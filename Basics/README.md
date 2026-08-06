@@ -1,311 +1,264 @@
-# 🐘 Master PostgreSQL Guide (Hinglish Edition)
+# 🐘 Basics — PostgreSQL Shuruat (Hinglish Edition)
 
-Welcome! Yeh guide PostgreSQL seekhne aur mastery hasil karne ke liye ek absolute complete, beginner-friendly cheatsheet hai. Chahe aap Windows use kar rahe ho ya Mac, isme saare installation steps, terminal commands, SQL queries, aur real-world examples super simple **Hinglish** language me samjhaye gaye hain.
-
----
-
-## 📌 Index / Table of Contents
-1. [PostgreSQL Ka Introduction](#1-postgresql-ka-introduction)
-2. [Installation Guide (Windows & Mac)](#2-installation-guide-windows--mac)
-   - [Windows Installation](#windows-installation)
-   - [Mac Installation](#mac-installation)
-   - [Code Editor Setup (VS Code & pgAdmin)](#code-editor-setup)
-3. [Terminal & CLI Basics (psql)](#3-terminal--cli-basics-psql)
-   - [Password Command / Reset](#password-command--reset)
-   - [Connect Command](#connect-command)
-   - [Essential Terminal Commands](#essential-terminal-commands)
-4. [Database Operations (Create & Drop)](#4-database-operations)
-5. [Table Operations & Basics](#5-table-operations--basics)
-   - [Create Table](#create-table)
-   - [Insert Data](#insert-data)
-   - [Select / Query Data](#select--query-data)
-   - [Update & Delete Row](#update--delete-row)
-   - [Delete Table Query (DROP vs TRUNCATE)](#delete-table-query)
-6. [Quick Cheat Sheet](#6-quick-cheat-sheet)
+Yeh folder PostgreSQL ki **foundation** cover karta hai — database banana, table create karna, data insert/update/delete karna, aur ek chhota **Employee Mini Project**. Saari files me queries comment me hain; pehle uncomment karke run karo, phir khud practice karo.
 
 ---
 
-## 1. 📖 PostgreSQL Ka Introduction
+## 📁 Folder Structure
 
-**PostgreSQL** (jisey hum *Postgres* bhi kehte hain) ek super powerful, open-source **Relational Database Management System (RDBMS)** hai.
-
-### Key Highlights:
-- **Relational Data:** Yeh data ko Tables (Rows aur Columns) me store karta hai.
-- **ACID Compliant:** Iska matlab aapka data hamesha safe, consistent, aur reliable rahega.
-- **Free & Open Source:** Koi licensing cost nahi hai.
-- **Used By Big Tech:** Apple, Netflix, Uber, Instagram sab Postgres use karte hain.
+| File | Kya Seekhenge |
+|------|---------------|
+| [`01-First_PostgresSQL.sql`](01-First_PostgresSQL.sql) | Database, Table, CRUD (Create, Read, Update, Delete) |
+| [`Employe_Mini_Project/Employe_Mini_Project.sql`](Employe_Mini_Project/Employe_Mini_Project.sql) | Real-world table design — salary, dept, constraints |
 
 ---
 
-## 2. 💻 Installation Guide (Windows & Mac)
+## 📌 Index
 
-### 🪟 Windows Installation
-1. Official website par jao: [PostgreSQL Downloads for Windows](https://www.postgresql.org/download/windows/)
-2. **EDB Installer** download karo.
-3. Setup `.exe` file run karo.
-4. Installation ke dauran:
-   - Installation Directory default rehne do.
-   - Components me **PostgreSQL Server, pgAdmin 4, Command Line Tools** select rakho.
-   - **Password Set Karo:** Superuser (`postgres`) ke liye ek strong password set karo aur **ise yaad rakho!**
-   - Port Number: Default `5432` rehne do.
-5. Finish par click karo.
-
-> **Environment Variable Set Karna (Important for Windows Terminal):**
-> 1. Start Menu me search karo **"Environment Variables"**.
-> 2. `Path` par edit click karo.
-> 3. New add karo: `C:\Program Files\PostgreSQL\<version>\bin`
-> 4. OK press karke save kar do.
+1. [Pehle Setup Kaise Karein](#1-pehle-setup-kaise-karein)
+2. [File 1 — First PostgreSQL (Student Table)](#2-file-1--first-postgresql-student-table)
+3. [File 2 — Employee Mini Project](#3-file-2--employee-mini-project)
+4. [Important Concepts Summary](#4-important-concepts-summary)
+5. [Quick Cheat Sheet](#5-quick-cheat-sheet)
 
 ---
 
-### 🍎 Mac Installation
-Mac me install karne ka sabse best aur easy tarika hai **Homebrew**.
+## 1. Pehle Setup Kaise Karein
 
-1. Terminal kholo aur command chalao:
-   ```bash
-   brew install postgresql@15
-   ```
-2. PostgreSQL service ko start karo:
-   ```bash
-   brew services start postgresql@15
-   ```
-3. Verify karne ke liye test karo:
-   ```bash
-   psql postgres
-   ```
+Terminal me PostgreSQL se connect karo:
 
-*(Alternative method: Aap [Postgres.app](https://postgresapp.com/) ya EDB installer GUI download karke bhi install kar sakte ho).*
-
----
-
-### 🛠️ Code Editor Setup
-
-#### 1. pgAdmin 4 (GUI Tool - Included in Installer)
-- PostreSQL ke saath pgAdmin automatically install ho jata hai.
-- Server connect karne ke liye bas apna installation ke waqt dala hua **Password** enter karo.
-
-#### 2. VS Code Extension
-Aap Visual Studio Code se bhi directly database run kar sakte ho:
-- VS Code open karo -> Extensions (`Ctrl + Shift + X` ya `Cmd + Shift + X`).
-- Search karo: **PostgreSQL** (by Chris Kolkman) ya **Database Client**.
-- Connection Settings:
-  - **Host:** `localhost`
-  - **User:** `postgres`
-  - **Password:** `<Aapka Password>`
-  - **Port:** `5432`
-
----
-
-## 3. ⚡ Terminal & CLI Basics (psql)
-
-PostgreSQL ke interactive terminal tool ko **`psql`** kehte hain.
-
-### 🔑 Connect Command
-Terminal / Command Prompt open karo aur yeh command likho:
-
-```bash
-# General Connection Command
-psql -U postgres -h localhost -p 5432
-```
-- `-U postgres`: User specify karta hai (`postgres` default admin profile hoti hai).
-- `-h localhost`: Server address.
-- `-p 5432`: Default port.
-
-Direct Connection (Agar local machine par ho):
 ```bash
 psql -U postgres
 ```
-*(Press Enter and type your password when prompted)*
+
+Naya database banao (file me naam `postgressql_basics` hai):
+
+```sql
+CREATE DATABASE postgressql_basics;
+\c postgressql_basics;
+```
+
+> **Note:** Har SQL statement ke end me semicolon (`;`) lagana mat bhoolna — warna psql wait karta rahega!
 
 ---
 
-### 🔐 Password Command / Reset
+## 2. File 1 — First PostgreSQL (Student Table)
 
-#### 1. psql ke andar password change karna:
-Agar aap log in ho aur `postgres` user ka password change karna chahte ho:
-```sql
-ALTER USER postgres WITH PASSWORD 'new_secure_password';
-```
+**File:** `01-First_PostgresSQL.sql`
 
-#### 2. Terminal shortcut command inside psql:
-```sql
-\password postgres
-```
-*(Yeh prompt karega naya password enter karne ke liye).*
+Yeh file ek simple `student` table banati hai aur us par basic CRUD operations sikhati hai.
 
----
-
-### 🛠️ Essential Terminal Commands (`psql` Special Commands)
-
-| Command | Work / Description |
-| :--- | :--- |
-| `\l` | Sabhi Databases ki list dekhein (List databases) |
-| `\c db_name` | Kisi specific database se connect / switch karein |
-| `\dt` | Current database ke sabhi tables ki list dekhein |
-| `\d table_name` | Table ka structure / schema dekhein |
-| `\du` | Sabhi users aur unki roles/permissions dekhein |
-| `\q` | psql terminal se exit / quit karein |
-| `\?` | Help screen open karein (psql commands ke liye) |
-| `\h` | SQL syntax ki help dekhein |
-
----
-
-## 4. 🗄️ Database Operations
-
-### ➕ Create Database
-Naya database banane ke liye query:
+### 🏗️ Table Create Karna
 
 ```sql
-CREATE DATABASE my_master_db;
-```
-
-> **Note:** Query ke end me semicolon (`;`) lagana zaroori hai!
-
-### ❌ Drop / Delete Database
-Kisi existing database ko permanent delete karne ke liye:
-
-```sql
-DROP DATABASE my_master_db;
-```
-
-⚠️ **Warning:** Drop karne se pehle ensure kar lein ki aap us database se filhaal connected na ho. Agar connected ho, toh pehle doosre DB me switch karein (`\c postgres`), phir drop karein.
-
----
-
-## 5. 📊 Table Operations & Basics
-
-Let's learn basic SQL CRUD (Create, Read, Update, Delete) operations.
-
-Pehle apne database se connect ho jayein:
-```sql
-\c my_master_db;
-```
-
----
-
-### 1️⃣ Create Table
-Ek `users` naam ka table banate hain:
-
-```sql
-CREATE TABLE users (
+CREATE TABLE student (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    age INT NOT NULL CHECK (age >= 18),
+    created_at TIMESTAMP DEFAULT NOW()
+);
+```
+
+### Samjho Har Column Ko
+
+| Column | Datatype | Constraint | Matlab (Hinglish) |
+|--------|----------|------------|-------------------|
+| `id` | `SERIAL` | `PRIMARY KEY` | Auto-increment unique ID — har row ka apna number |
+| `name` | `TEXT` | `NOT NULL` | Naam dena **compulsory** hai |
+| `email` | `TEXT` | `UNIQUE` | Ek hi email do baar nahi aa sakti |
+| `age` | `INT` | `CHECK (age >= 18)` | Sirf 18 ya usse zyada age allowed |
+| `created_at` | `TIMESTAMP` | `DEFAULT NOW()` | Row banate hi current date-time save ho jayega |
+
+### ➕ Insert Data
+
+```sql
+INSERT INTO student (name, email, age)
+VALUES ('Paras', 'paras@gmail.com', 19);
+```
+
+> ⚠️ **Dhyan do:** File me table naam `student` hai lekin insert me `students` likha hai — yeh typo hai. Sahi naam use karo: `INSERT INTO student ...`
+
+Agar age 18 se kam ho to PostgreSQL error dega — `CHECK` constraint kaam kar raha hai.
+
+### 📖 Read (SELECT)
+
+```sql
+-- Saara data
+SELECT * FROM student;
+
+-- Sirf specific columns
+SELECT name, email FROM student;
+```
+
+### ✏️ Update
+
+Existing row modify karo — hamesha `WHERE` lagao warna **saari rows** update ho jayengi!
+
+```sql
+UPDATE student SET age = 20 WHERE id = 1;
+```
+
+### 🗑️ Delete
+
+```sql
+DELETE FROM student WHERE id = 1;
+```
+
+### 💥 Table Hataana
+
+```sql
+DROP TABLE student;
+```
+
+---
+
+## 3. File 2 — Employee Mini Project
+
+**File:** `Employe_Mini_Project/Employe_Mini_Project.sql`
+
+Yeh thoda advanced hai — real company jaisa `employees` table jisme salary, department, hire date sab hai.
+
+### 🏗️ Table Structure
+
+```sql
+CREATE TABLE employees (
+    emp_id SERIAL PRIMARY KEY,
+    fname VARCHAR(50) NOT NULL,
+    lname VARCHAR(50) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
-    age INT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    dept VARCHAR(50) NOT NULL,
+    salary NUMERIC(10, 2) CHECK (salary > 0),
+    hire_date DATE NOT NULL DEFAULT CURRENT_DATE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
 
----
+### Naye Concepts Jo Yahan Seekhoge
 
-### 2️⃣ Insert Data (Create)
-Table me row add karne ke liye:
+| Concept | Example | Explanation |
+|---------|---------|-------------|
+| `VARCHAR(50)` | `fname VARCHAR(50)` | Fixed max length text — 50 characters se zyada nahi |
+| `NUMERIC(10, 2)` | `salary NUMERIC(10, 2)` | Paisa/decimal ke liye — 10 digits total, 2 decimal places (e.g. `85000.00`) |
+| `DATE` | `hire_date DATE` | Sirf date store karta hai (time nahi) |
+| `DEFAULT CURRENT_DATE` | hire_date par | Agar date na do to aaj ki date automatically set ho jayegi |
+| `CHECK (salary > 0)` | salary column | Negative salary allow nahi hogi |
+
+### ➕ Sample Data Insert
+
+File me 10 employees ka ready-made data hai — Engineering, HR, Marketing, Finance, Data Science departments ke saath:
 
 ```sql
--- Single Row Insert
-INSERT INTO users (name, email, age) 
-VALUES ('Neeraj Goswami', 'neeraj@example.com', 24);
+INSERT INTO employees (fname, lname, email, dept, salary, hire_date) VALUES
+('Aarav', 'Sharma', 'aarav.sharma@example.com', 'Engineering', 85000.00, '2024-03-15'),
+('Diya', 'Patel', 'diya.patel@example.com', 'Human Resources', 62000.00, '2023-08-22');
+-- ... aur 8 rows file me hain
+```
 
--- Multiple Rows Insert
-INSERT INTO users (name, email, age) 
-VALUES 
-    ('Rahul Sharma', 'rahul@example.com', 22),
-    ('Priya Verma', 'priya@example.com', 25);
+### Practice Queries (Khud Try Karo)
+
+```sql
+-- Saare employees dekho
+SELECT * FROM employees;
+
+-- Sirf Engineering department
+SELECT fname, lname, salary FROM employees WHERE dept = 'Engineering';
+
+-- Sabse zyada salary wala employee
+SELECT fname, lname, salary FROM employees ORDER BY salary DESC LIMIT 1;
+
+-- Department wise count
+SELECT dept, COUNT(*) FROM employees GROUP BY dept;
 ```
 
 ---
 
-### 3️⃣ Select Data (Read)
-Data dekhne ke liye queries:
+## 4. Important Concepts Summary
+
+### CRUD — Chaar Basic Operations
+
+| Operation | SQL Command | Kaam |
+|-----------|-------------|------|
+| **C**reate | `INSERT INTO` | Nayi row add karna |
+| **R**ead | `SELECT` | Data padhna / dekhna |
+| **U**pdate | `UPDATE ... SET ... WHERE` | Existing data badalna |
+| **D**elete | `DELETE FROM ... WHERE` | Row hataana |
+
+### Constraints — Data Safe Rakhne Ke Rules
+
+| Constraint | Matlab |
+|------------|--------|
+| `PRIMARY KEY` | Har row uniquely identify hoti hai |
+| `NOT NULL` | Value dena zaroori hai |
+| `UNIQUE` | Duplicate value allowed nahi |
+| `CHECK` | Custom rule (jaise age >= 18, salary > 0) |
+| `DEFAULT` | Value na do to automatic value set ho jati hai |
+
+### SERIAL vs Manual ID
 
 ```sql
--- Saara data dekhne ke liye
-SELECT * FROM users;
-
--- Specific columns dekhne ke liye
-SELECT name, email FROM users;
-
--- Condition (WHERE) ke sath
-SELECT * FROM users WHERE age > 23;
+id SERIAL PRIMARY KEY   -- PostgreSQL khud 1, 2, 3... badhata rahega
 ```
+
+Manual ID dene ki zaroorat nahi — `SERIAL` auto-increment handle karta hai.
+
+### DROP vs TRUNCATE vs DELETE
+
+| Command | Kya Hota Hai |
+|---------|--------------|
+| `DELETE FROM table WHERE ...` | Specific rows delete |
+| `TRUNCATE TABLE table` | Saara data delete, table structure rehta hai |
+| `DROP TABLE table` | Poora table + data permanent delete |
 
 ---
 
-### 4️⃣ Update Data
-Existing record modify karne ke liye:
+## 5. Quick Cheat Sheet
 
 ```sql
-UPDATE users 
-SET age = 25 
-WHERE name = 'Neeraj Goswami';
-```
+-- Connect & Setup
+psql -U postgres
+CREATE DATABASE postgressql_basics;
+\c postgressql_basics;
 
----
-
-### 5️⃣ Delete Row
-Specific data row delete karne ke liye:
-
-```sql
-DELETE FROM users 
-WHERE id = 2;
-```
-
----
-
-### 🗑️ Delete Table Query (DROP vs TRUNCATE)
-
-Jab aapko pure table par action lena ho:
-
-#### Option A: `TRUNCATE TABLE` (Data saaf karo, structure rakho)
-Yeh table ke andar ka **saara data delete** kar deta hai, lekin table aur uske columns bane rehte hain.
-
-```sql
-TRUNCATE TABLE users;
-```
-
-#### Option B: `DROP TABLE` (Pure table ko hi khatam karo)
-Yeh table aur uske andar ka **poora data permanent delete** kar deta hai.
-
-```sql
-DROP TABLE users;
-```
-
----
-
-## 6. 🚀 Quick Cheat Sheet
-
-```sql
--- 1. Create DB
-CREATE DATABASE tech_db;
-
--- 2. Switch DB (In psql)
-\c tech_db;
-
--- 3. Create Table
-CREATE TABLE products (
+-- Create Table
+CREATE TABLE student (
     id SERIAL PRIMARY KEY,
-    title VARCHAR(50),
-    price NUMERIC(10, 2)
+    name TEXT NOT NULL,
+    email TEXT UNIQUE NOT NULL,
+    age INT CHECK (age >= 18)
 );
 
--- 4. Check Table Schema
-\d products
+-- Insert
+INSERT INTO student (name, email, age) VALUES ('Neeraj', 'n@mail.com', 22);
 
--- 5. Insert Record
-INSERT INTO products (title, price) VALUES ('Laptop', 55000.00);
+-- Read
+SELECT * FROM student WHERE age > 20;
 
--- 6. Fetch Records
-SELECT * FROM products;
+-- Update
+UPDATE student SET age = 23 WHERE name = 'Neeraj';
 
--- 7. Drop Table
-DROP TABLE products;
+-- Delete Row
+DELETE FROM student WHERE id = 1;
 
--- 8. Exit Terminal
-\q
+-- Drop Table
+DROP TABLE student;
+
+-- psql Commands
+\dt          -- tables list
+\d student   -- table structure
+\q           -- exit
 ```
 
 ---
 
-🎯 **Pro Tip:** Semicolon `;` lagana kabhi mat bhoolna query ke end me, warna terminal response nahi dega aur click-wait karta rahega!
+## 🎯 Pro Tips
 
-Happy Coding! 🚀
+1. **Hamesha `WHERE` use karo** UPDATE aur DELETE me — warna poori table affect ho jayegi.
+2. **Pehle SELECT, phir UPDATE/DELETE** — `WHERE` condition test karne ke liye pehle SELECT chalao.
+3. File me queries **comment** (`--`) me hain — ek-ek karke uncomment karke run karo.
+4. `Employe_Mini_Project` me `NUMERIC(10,2)` use kiya hai — money/financial data ke liye yeh best practice hai, `FLOAT` se better.
+
+---
+
+Happy Learning! 🚀 Agla step: [`Datatypes/`](../Datatypes/) folder — wahan advanced datatypes aur JSONB seekhoge.
