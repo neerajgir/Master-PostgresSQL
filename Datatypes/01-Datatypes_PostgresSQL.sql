@@ -89,3 +89,6 @@ SELECT course_name, AVG(rating) AS avg_rating FROM course_enrollment GROUP BY co
 
 SELECT completion_status, COUNT(*) FROM course_enrollment GROUP BY completion_status;
 
+SELECT UPPER(student_name) FROM course_enrollment;
+
+SELECT LOWER(student_name) FROM course_enrollment;
