@@ -82,3 +82,10 @@ SELECT AVG(price) FROM course_enrollment;
 SELECT MIN(price) FROM course_enrollment;
 
 SELECT MAX(price) FROM course_enrollment;
+
+SELECT course_name, SUM(price) AS revenue FROM course_enrollment GROUP BY course_name;
+
+SELECT course_name, AVG(rating) AS avg_rating FROM course_enrollment GROUP BY course_name HAVING AVG(rating) IS NOT NULL;
+
+SELECT completion_status, COUNT(*) FROM course_enrollment GROUP BY completion_status;
+
