@@ -92,3 +92,11 @@ SELECT completion_status, COUNT(*) FROM course_enrollment GROUP BY completion_st
 SELECT UPPER(student_name) FROM course_enrollment;
 
 SELECT LOWER(student_name) FROM course_enrollment;
+
+SELECT student_name, LENGTH(student_name) FROM course_enrollment;
+
+SELECT CONCAT(student_name, ' enrolled_in ', course_name) FROM course_enrollment;
+
+SELECT SUBSTRING(email FROM 1 FOR 5) FROM course_enrollment;
+
+SELECT TRIM('   PostgreSQL   ');
