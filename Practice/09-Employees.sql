@@ -31,3 +31,6 @@ DELETE FROM Employees WHERE EXTRACT(YEAR FROM AGE(CURRENT_DATE, joining_date)) =
 SELECT id, full_name, department, salary FROM Employees WHERE salary > 80000.00;
 
 SELECT id, full_name, department FROM Employees WHERE is_manager = true;
+
+SELECT id, full_name, department, joining_date FROM Employees WHERE joining_date > '2024-01-01' ORDER BY joining_date DESC ;
+
