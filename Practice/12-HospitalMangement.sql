@@ -43,3 +43,38 @@ INSERT INTO patients (name, age, blood_group) VALUES
 ('Farhan Ahmed', 33, 'O+'),
 ('Pooja Yadav', 40, 'B+');
 
+-- Doctors (10 rows, varied specializations)
+INSERT INTO doctors (name, specialization, salary) VALUES
+('Dr. Anil Kapoor', 'Cardiology', 185000.00),
+('Dr. Sunita Rao', 'Dermatology', 142000.00),
+('Dr. Vikas Agarwal', 'Orthopedics', 165000.00),
+('Dr. Meenakshi Iyer', 'Pediatrics', 138000.00),
+('Dr. Rajesh Khanna', 'Neurology', 210000.00),
+('Dr. Shalini Menon', 'Gynecology', 155000.00),
+('Dr. Amit Bhatia', 'General Medicine', 120000.00),
+('Dr. Pooja Nair', 'ENT', 128000.00),
+('Dr. Sanjay Chopra', 'Psychiatry', 148000.00),
+('Dr. Deepika Rana', 'Ophthalmology', 132000.00);
+
+-- Appointments (20 rows, linking patients 1-20 to doctors 1-10)
+INSERT INTO appointments (patient_id, doctor_id, appointment_date, status) VALUES
+(1, 1, '2025-01-05 09:00:00', 'completed'),
+(2, 3, '2025-01-06 10:30:00', 'completed'),
+(3, 2, '2025-01-06 11:00:00', 'cancelled'),
+(4, 5, '2025-01-07 09:30:00', 'completed'),
+(5, 4, '2025-01-08 14:00:00', 'scheduled'),
+(6, 6, '2025-01-08 15:15:00', 'completed'),
+(7, 1, '2025-01-09 09:45:00', 'scheduled'),
+(8, 7, '2025-01-09 10:00:00', 'completed'),
+(9, 8, '2025-01-10 11:30:00', 'cancelled'),
+(10, 9, '2025-01-10 13:00:00', 'scheduled'),
+(11, 10, '2025-01-11 09:00:00', 'completed'),
+(12, 2, '2025-01-11 10:15:00', 'scheduled'),
+(13, 3, '2025-01-12 11:45:00', 'completed'),
+(14, 5, '2025-01-12 14:30:00', 'cancelled'),
+(15, 4, '2025-01-13 09:15:00', 'scheduled'),
+(16, 6, '2025-01-13 10:45:00', 'completed'),
+(17, 1, '2025-01-14 12:00:00', 'scheduled'),
+(18, 8, '2025-01-14 13:30:00', 'completed'),
+(19, 9, '2025-01-15 09:00:00', 'scheduled'),
+(20, 7, '2025-01-15 10:30:00', 'completed');
