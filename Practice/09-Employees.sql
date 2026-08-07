@@ -27,3 +27,5 @@ UPDATE Employees SET salary = salary * 1.10 WHERE department IN ('IT', 'Engineer
 SELECT * FROM Employees;
 
 DELETE FROM Employees WHERE EXTRACT(YEAR FROM AGE(CURRENT_DATE, joining_date)) = 0;
+
+SELECT id, full_name, department, salary FROM Employees WHERE salary > 80000.00;
