@@ -1,3 +1,4 @@
+-- Active: 1785411209906@@127.0.0.1@5432@postgressql_practice
 CREATE TABLE Employees (
     id SERIAL PRIMARY KEY,
     full_name VARCHAR(50) NOT NULL,
@@ -20,3 +21,9 @@ INSERT INTO Employees (full_name, email, salary, department, experience_year, is
 ('Ananya Iyer', 'ananya.iyer@company.com', 69000.00, 'Data Science', '2020-10-01', FALSE, '2020-10-01'),
 ('Rahul Joshi', 'rahul.joshi@company.com', 125000.00, 'IT', '2014-02-28', TRUE, '2014-02-28'),
 ('Kavita Rao', 'kavita.rao@company.com', 57000.00, 'Operations', '2022-07-14', FALSE, '2022-07-14');
+
+UPDATE Employees SET salary = salary * 1.10 WHERE department IN ('IT', 'Engineering', 'Data Science');
+
+SELECT * FROM Employees;
+
+DELETE FROM Employees WHERE EXTRACT(YEAR FROM AGE(CURRENT_DATE, joining_date)) = 0;
