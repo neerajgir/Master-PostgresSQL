@@ -52,3 +52,7 @@ INSERT INTO Productss (name, price, stock, category_id) VALUES
 ('Atomic Habits Paperback', 499.00, 200, 4),
 ('The Lean Startup', 650.00, 14, 4),
 ('Data Structures & Algorithms', 1599.00, 30, 4);
+
+SELECT * FROM Productss;
+
+UPDATE Productss SET stock = stock - 2 WHERE id = 1;
