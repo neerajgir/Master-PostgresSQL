@@ -88,3 +88,4 @@ SELECT * FROM appointments;
 
 SELECT * FROM appointments WHERE status = 'scheduled' AND doctor_id = 1;
 
+SELECT id, name, specialization, salary FROM doctors WHERE salary > 200000.00 ORDER BY salary DESC; 
