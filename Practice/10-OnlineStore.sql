@@ -58,3 +58,6 @@ SELECT * FROM Productss;
 UPDATE Productss SET stock = stock - 2 WHERE id = 1;
 
 SELECT id, name, price FROM Productss WHERE price > 1000;
+
+SELECT id, name, stock FROM Productss WHERE stock < 10;
+
