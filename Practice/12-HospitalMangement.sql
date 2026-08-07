@@ -78,3 +78,7 @@ INSERT INTO appointments (patient_id, doctor_id, appointment_date, status) VALUE
 (18, 8, '2025-01-14 13:30:00', 'completed'),
 (19, 9, '2025-01-15 09:00:00', 'scheduled'),
 (20, 7, '2025-01-15 10:30:00', 'completed');
+
+INSERT INTO appointments (patient_id, doctor_id, appointment_date)
+VALUES (3, 2, '2025-01-20 10:00:00');
+
