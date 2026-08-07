@@ -82,3 +82,9 @@ INSERT INTO appointments (patient_id, doctor_id, appointment_date, status) VALUE
 INSERT INTO appointments (patient_id, doctor_id, appointment_date)
 VALUES (3, 2, '2025-01-20 10:00:00');
 
+UPDATE appointments SET status = 'cancelled' WHERE patient_id = 19 AND doctor_id = 9 AND appointment_date = '2025-01-15 09:00:00';
+
+SELECT * FROM appointments;
+
+SELECT * FROM appointments WHERE status = 'scheduled' AND doctor_id = 1;
+
