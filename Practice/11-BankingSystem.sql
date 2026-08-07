@@ -39,3 +39,14 @@ INSERT INTO accounts (clients_id, account_number, balance, account_type) VALUES
 (8, 'ACC100082910', 64000.00, 'Current'),
 (9, 'ACC100092001', 1250.00, 'Checking'),
 (10, 'ACC100101112', 520000.00, 'Savings');
+
+UPDATE accounts SET balance = balance + 5000.00 WHERE account_number = 'ACC100019283';
+UPDATE accounts SET balance = balance - 5000.00 WHERE account_number = 'ACC100101112';
+
+SELECT id, clients_id, account_number, balance FROM accounts WHERE balance < 5000.00;
+SELECT id, clients_id, account_number, balance FROM accounts WHERE balance > 100000.00;
+
+
+
+SELECT * FROM accounts;
+
