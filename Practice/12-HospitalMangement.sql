@@ -21,3 +21,25 @@ CREATE TABLE appointments (
     CHECK (status IN ('scheduled', 'completed', 'cancelled'))
 );
 
+INSERT INTO patients (name, age, blood_group) VALUES
+('Aarav Sharma', 34, 'B+'),
+('Priya Patel', 27, 'O+'),
+('Rohan Mehta', 45, 'A+'),
+('Ananya Iyer', 19, 'AB+'),
+('Vikram Singh', 52, 'O-'),
+('Sneha Reddy', 31, 'B-'),
+('Arjun Nair', 38, 'A-'),
+('Kavya Krishnan', 24, 'O+'),
+('Rahul Verma', 41, 'AB-'),
+('Ishita Joshi', 29, 'B+'),
+('Aditya Kumar', 60, 'A+'),
+('Meera Pillai', 22, 'O+'),
+('Karan Malhotra', 35, 'B+'),
+('Divya Rao', 47, 'A-'),
+('Siddharth Gupta', 55, 'AB+'),
+('Neha Desai', 18, 'O-'),
+('Manoj Chauhan', 63, 'B-'),
+('Riya Bose', 26, 'A+'),
+('Farhan Ahmed', 33, 'O+'),
+('Pooja Yadav', 40, 'B+');
+
