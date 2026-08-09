@@ -142,4 +142,13 @@ SET content_rating =
 -- Verify the update
 SELECT title, rating, content_rating FROM platform_movies;
 
+-- Insert with conditional values
+INSERT INTO platform_movies (title, genre, rating, release_year, content_rating)
+VALUES 
+    ('New Action Film', 'Action', 7.5, 2025,
+     CASE 
+         WHEN 7.5 >= 8.0 THEN 'Premium'
+         ELSE 'Standard'
+     END);
+
 SELECT * FROM platform_movies;
