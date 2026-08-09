@@ -62,4 +62,17 @@ SELECT
         ELSE 'Catalog'
     END AS recency
 FROM platform_movies;
+
+-- Find movies based on conditional criteria
+SELECT 
+    title,
+    genre,
+    rating
+FROM platform_movies
+WHERE 
+    CASE 
+        WHEN genre = 'Documentary' THEN rating >= 7.5
+        WHEN genre = 'Comedy' THEN rating >= 6.0
+        ELSE rating >= 8.0
+    END;
 SELECT * FROM platform_movies;
