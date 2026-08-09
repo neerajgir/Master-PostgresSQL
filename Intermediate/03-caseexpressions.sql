@@ -130,4 +130,16 @@ SELECT
     END AS platform_tag
 FROM platform_movies;
 
+-- Update records conditionally
+UPDATE platform_movies
+SET content_rating = 
+    CASE 
+        WHEN rating >= 8.0 AND content_rating = 'R' THEN 'R - Premium'
+        WHEN rating < 6.5 THEN content_rating || ' - Limited'
+        ELSE content_rating
+    END;
+
+-- Verify the update
+SELECT title, rating, content_rating FROM platform_movies;
+
 SELECT * FROM platform_movies;
