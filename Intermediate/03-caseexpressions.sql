@@ -43,4 +43,23 @@ INSERT INTO platform_movies (title, genre, rating, release_year, content_rating)
 ('Epic Quest', 'Fantasy', 9.1, 2023, 'PG-13'),
 ('True Crime Story', 'Documentary', 8.0, 2024, 'R');
 
+
+-- Complex CASE with multiple conditions
+SELECT 
+    title,
+    rating,
+    content_rating,
+    CASE 
+        WHEN rating >= 9.0 THEN 'Must Watch'
+        WHEN rating >= 8.0 AND content_rating IN ('PG', 'PG-13') THEN 'Family Friendly Hit'
+        WHEN rating >= 7.0 THEN 'Worth Watching'
+        WHEN rating >= 6.0 THEN 'Average'
+        ELSE 'Skip'
+    END AS recommendation,
+    CASE 
+        WHEN release_year >= 2024 THEN 'New Release'
+        WHEN release_year >= 2022 THEN 'Recent'
+        ELSE 'Catalog'
+    END AS recency
+FROM platform_movies;
 SELECT * FROM platform_movies;
