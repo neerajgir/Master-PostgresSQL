@@ -17,4 +17,13 @@ ADD COLUMN rating VARCHAR(10) DEFAULT 'PG-13';
 ALTER TABLE movies
 ADD COLUMN duration_minutes INTEGER NOT NULL DEFAULT 120;
 
+
+ALTER TABLE movies DROP COLUMN rating;
+
+ALTER TABLE movies
+DROP COLUMN box_office,
+DROP COLUMN duration_minutes;
+
+ALTER TABLE movies
+DROP COLUMN director CASCADE;
 SELECT * FROM movies;
