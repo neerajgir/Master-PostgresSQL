@@ -4,3 +4,5 @@ CREATE TABLE movies (
     title VARCHAR(200) NOT NULL,
     release_year INT 
 );
+
+ALTER TABLE movies ADD COLUMN director VARCHAR(100);
