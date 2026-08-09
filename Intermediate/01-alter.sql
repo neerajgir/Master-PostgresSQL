@@ -6,3 +6,15 @@ CREATE TABLE movies (
 );
 
 ALTER TABLE movies ADD COLUMN director VARCHAR(100);
+
+ALTER TABLE movies
+ADD COLUMN budget DECIMAL(12, 2),
+ADD COLUMN box_office DECIMAL(12, 2);
+
+ALTER TABLE movies
+ADD COLUMN rating VARCHAR(10) DEFAULT 'PG-13';
+
+ALTER TABLE movies
+ADD COLUMN duration_minutes INTEGER NOT NULL DEFAULT 120;
+
+SELECT * FROM movies;
