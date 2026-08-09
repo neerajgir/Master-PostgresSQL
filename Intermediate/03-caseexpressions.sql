@@ -75,4 +75,19 @@ WHERE
         WHEN genre = 'Comedy' THEN rating >= 6.0
         ELSE rating >= 8.0
     END;
+
+    -- Custom sorting logic
+SELECT 
+    title,
+    genre,
+    rating
+FROM platform_movies
+ORDER BY 
+    CASE 
+        WHEN genre = 'Fantasy' THEN 1
+        WHEN genre = 'Sci-Fi' THEN 2
+        WHEN genre = 'Thriller' THEN 3
+        ELSE 4
+    END,
+    rating DESC;
 SELECT * FROM platform_movies;
