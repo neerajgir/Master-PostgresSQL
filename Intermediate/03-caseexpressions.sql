@@ -14,4 +14,13 @@ INSERT INTO viewer_activity (user_id, movie_id, watch_percentage, watched_date) 
 (4, 104, 20, '2025-01-03'),
 (5, 105, 90, '2025-01-03');
 
+SELECT activity_id, user_id, watch_percentage,
+CASE 
+    WHEN watch_percentage >= 90 THEN 'Completed'
+    WHEN watch_percentage >= 50 THEN 'Partial'
+    WHEN watch_percentage >= 20 THEN 'Started'
+    ELSE 'Barely Watches'
+END AS viewing_status 
+FROM viewer_activity;
+
 SELECT * FROM viewer_activity;
