@@ -39,5 +39,43 @@ USING rating::VARCHAR(20);
 -- Change column to allow more precision
 ALTER TABLE movies
 ALTER COLUMN release_year TYPE NUMERIC(4, 0);
+-- Set a default value
+ALTER TABLE movies
+ALTER COLUMN rating SET DEFAULT 'Not Rated';
 
+-- Drop default value
+ALTER TABLE movies
+ALTER COLUMN rating DROP DEFAULT;
+
+-- Set default with expression
+ALTER TABLE movies
+ADD COLUMN added_date DATE DEFAULT CURRENT_DATE;
+
+-- Drop and reset default
+ALTER TABLE movies
+ALTER COLUMN added_date DROP DEFAULT;
+
+ALTER TABLE movies
+ALTER COLUMN added_date SET DEFAULT NOW();
+
+-- Add NOT NULL constraint (ensure no existing NULL values first)
+ALTER TABLE movies
+ALTER COLUMN movie_title SET NOT NULL;
+
+-- Drop NOT NULL constraint
+ALTER TABLE movies
+ALTER COLUMN rating DROP NOT NULL;
+
+-- Example workflow: handle existing NULLs before adding constraint
+UPDATE movies SET director = 'Unknown' WHERE director IS NULL;
+
+ALTER TABLE movies
+ALTER COLUMN director SET NOT NULL;
+
+-- Set default for "unknown" and make NOT NULL
+ALTER TABLE movies
+ALTER COLUMN director SET DEFAULT 'Unknown';
+
+ALTER TABLE movies
+ALTER COLUMN director SET NOT NULL;
 SELECT * FROM movies;
