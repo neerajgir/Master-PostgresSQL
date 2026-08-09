@@ -78,4 +78,12 @@ ALTER COLUMN director SET DEFAULT 'Unknown';
 
 ALTER TABLE movies
 ALTER COLUMN director SET NOT NULL;
+
+-- Rename the entire table
+ALTER TABLE movies
+RENAME TO films;
+
+-- Rename it back
+ALTER TABLE films
+RENAME TO movies;
 SELECT * FROM movies;
