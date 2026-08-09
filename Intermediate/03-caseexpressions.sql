@@ -24,3 +24,15 @@ END AS viewing_status
 FROM viewer_activity;
 
 SELECT * FROM viewer_activity;
+
+-- CASE in SELECT with Multiple Conditions
+-- Create movies table with ratings
+CREATE TABLE platform_movies (
+    movie_id SERIAL PRIMARY KEY,
+    title VARCHAR(200),
+    genre VARCHAR(50),
+    rating DECIMAL(3, 1),
+    release_year INTEGER,
+    content_rating VARCHAR(10)
+);
+
