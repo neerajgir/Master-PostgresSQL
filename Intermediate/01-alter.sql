@@ -29,5 +29,15 @@ DROP COLUMN director CASCADE;
 
 ALTER TABLE movies RENAME COLUMN title TO movie_title;
 
+ALTER TABLE movies ALTER COLUMN release_year TYPE SMALLINT;
+
+-- Change with USING clause for complex conversions
+ALTER TABLE movies
+ALTER COLUMN rating TYPE VARCHAR(20)
+USING rating::VARCHAR(20);
+
+-- Change column to allow more precision
+ALTER TABLE movies
+ALTER COLUMN release_year TYPE NUMERIC(4, 0);
 
 SELECT * FROM movies;
