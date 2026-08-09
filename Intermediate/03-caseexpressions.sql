@@ -108,5 +108,26 @@ SELECT
 FROM platform_movies
 GROUP BY content_rating;
 
+-- Complex recommendation engine
+SELECT 
+    title,
+    genre,
+    rating,
+    release_year,
+    CASE 
+        WHEN rating >= 8.5 THEN
+            CASE 
+                WHEN release_year >= 2024 THEN 'Trending Masterpiece'
+                WHEN release_year >= 2022 THEN 'Recent Classic'
+                ELSE 'Timeless Gem'
+            END
+        WHEN rating >= 7.0 THEN
+            CASE 
+                WHEN genre IN ('Sci-Fi', 'Fantasy') THEN 'Solid Genre Pick'
+                ELSE 'Good Watch'
+            END
+        ELSE 'Filler Content'
+    END AS platform_tag
+FROM platform_movies;
 
 SELECT * FROM platform_movies;
