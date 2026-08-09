@@ -26,4 +26,8 @@ DROP COLUMN duration_minutes;
 
 ALTER TABLE movies
 DROP COLUMN director CASCADE;
+
+ALTER TABLE movies RENAME COLUMN title TO movie_title;
+
+
 SELECT * FROM movies;
