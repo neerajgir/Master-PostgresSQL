@@ -90,4 +90,23 @@ ORDER BY
         ELSE 4
     END,
     rating DESC;
+
+-- Count movies by category
+SELECT 
+    COUNT(*) AS total_movies,
+    COUNT(CASE WHEN rating >= 8.0 THEN 1 END) AS highly_rated,
+    COUNT(CASE WHEN rating < 7.0 THEN 1 END) AS low_rated,
+    COUNT(CASE WHEN content_rating = 'R' THEN 1 END) AS mature_content
+FROM platform_movies;
+
+-- Calculate average rating by content category
+SELECT 
+    content_rating,
+    AVG(CASE WHEN genre = 'Sci-Fi' THEN rating END) AS avg_scifi_rating,
+    AVG(CASE WHEN genre = 'Comedy' THEN rating END) AS avg_comedy_rating,
+    AVG(rating) AS overall_avg
+FROM platform_movies
+GROUP BY content_rating;
+
+
 SELECT * FROM platform_movies;
