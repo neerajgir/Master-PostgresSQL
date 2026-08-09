@@ -36,3 +36,11 @@ CREATE TABLE platform_movies (
     content_rating VARCHAR(10)
 );
 
+INSERT INTO platform_movies (title, genre, rating, release_year, content_rating) VALUES
+('Stellar Voyage', 'Sci-Fi', 8.7, 2023, 'PG-13'),
+('Dark Alley', 'Thriller', 7.2, 2022, 'R'),
+('Laugh Factory', 'Comedy', 6.5, 2024, 'PG'),
+('Epic Quest', 'Fantasy', 9.1, 2023, 'PG-13'),
+('True Crime Story', 'Documentary', 8.0, 2024, 'R');
+
+SELECT * FROM platform_movies;
