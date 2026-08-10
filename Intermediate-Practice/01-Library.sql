@@ -132,4 +132,13 @@ SELECT name FROM members WHERE name LIKE 'A%';
 SELECT name FROM members WHERE name LIKE '%n';
 SELECT name FROM members WHERE name LIKE '%ah%';
 
+-- ILIKE - ILIKE is PostgreSQL's case-insensitive version of LIKE.
+
+SELECT title FROM books WHERE title ILIKE '%code%';
+
+SELECT title FROM books WHERE title ILIKE '%JAVA%';
+SELECT name FROM members WHERE name ILIKE '%ALI%';
+
+SELECT title, author FROM books WHERE author ILIKE '%robert%';
+SELECT title, author FROM books WHERE title ILIKE '%program%';
 
