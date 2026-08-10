@@ -191,3 +191,17 @@ SELECT MIN(borrow_date) FROM borrow_history;
 SELECT MAX(price) FROM books;
 SELECT MAX(stock) FROM books;
 SELECT MAX(borrow_date) FROM borrow_history;
+
+
+-- GROUP BY - This is where PostgreSQL starts becoming more interesting. 🔥
+
+SELECT author, COUNT(*) FROM books GROUP BY author;
+SELECT author, AVG(price) FROM books GROUP BY author;
+SELECT author, COUNT(stock) FROM books GROUP BY author;
+SELECT author, MIN(price) FROM books GROUP BY author;
+SELECT author, MAX(price) FROM books GROUP BY author;
+
+SELECT metadata->>'publisher', COUNT(*) FROM books GROUP BY metadata->>'publisher';
+SELECT metadata->>'publisher', AVG(price) FROM books GROUP BY metadata->>'publisher';
+SELECT metadata->>'publisher', COUNT(stock) FROM books GROUP BY metadata->>'publisher';
+
