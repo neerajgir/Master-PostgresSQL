@@ -174,4 +174,20 @@ SELECT COUNT(*) FROM members WHERE is_active = true;
 SELECT COUNT(*) FROM borrow_history WHERE returned = true;
 SELECT COUNT(*) FROM books WHERE stock > 5;
 
+SELECT SUM(stock) FROM books;
+SELECT SUM(price) FROM books;
+SELECT SUM(stock) FROM books WHERE stock > 5;
 
+SELECT AVG(price) FROM books;
+SELECT AVG(stock) FROM books;
+
+SELECT AVG(price) AS average_price FROM books WHERE price > 20;
+
+SELECT MIN(price) FROM books;
+
+SELECT MIN(stock) FROM books;
+SELECT MIN(borrow_date) FROM borrow_history;
+
+SELECT MAX(price) FROM books;
+SELECT MAX(stock) FROM books;
+SELECT MAX(borrow_date) FROM borrow_history;
