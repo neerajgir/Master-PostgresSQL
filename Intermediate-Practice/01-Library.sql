@@ -78,4 +78,15 @@ SELECT name FROM members ORDER BY name ASC;
 
 SELECT title, price FROM books ORDER BY price DESC, title ASC;
 
+-- LIMIT - Goal: Restrict the number of rows returned.
+SELECT title FROM books LIMIT 5;
+
+SELECT title, price FROM books LIMIT 3;
+
+SELECT title, price FROM books ORDER BY price DESC, title ASC LIMIT 3;
+
+SELECT * FROM members LIMIT 3;
+
+SELECT title, stock FROM books ORDER BY stock DESC, title DESC LIMIT 3;
+
 
