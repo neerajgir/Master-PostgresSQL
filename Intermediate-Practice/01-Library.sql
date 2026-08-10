@@ -223,3 +223,20 @@ HAVING COUNT(*) > 1;
 
 
 SELECT author, SUM(stock) as total_stock FROM books GROUP BY author HAVING SUM(stock) > 10 ORDER BY total_stock DESC;
+
+SELECT title, price FROM books ORDER BY price DESC, title ASC LIMIT 5;
+
+SELECT title, price FROM books WHERE price BETWEEN 20 AND 40 ORDER BY price DESC, title ASC;
+SELECT title, price FROM books ORDER BY price DESC, title ASC LIMIT 5 OFFSET 5;
+
+SELECT DISTINCT metadata->>'publisher' AS Publisher FROM books WHERE metadata->>'publisher' IS NOT NULL ORDER BY publisher ASC;
+
+SELECT title, author, price FROM books WHERE title ILIKE '%code%';
+
+SELECT title, author, price FROM books WHERE author IN ('James Clear','Morgan Housel','Cal Newport') ORDER BY price ASC, title ASC;
+
+SELECT title, price FROM books WHERE price BETWEEN 15 AND 40 ORDER BY price DESC, title ASC LIMIT 5;
+
+SELECT author, ROUND(AVG(price), 2) AS average_price FROM books GROUP BY author HAVING AVG(price) > 20 ORDER BY average_price DESC;
+
+SELECT author, COUNT(*) AS total_books, AVG(price) AS average_price, SUM(stock) AS total_stock FROM books GROUP BY author HAVING COUNT(*) >= 2 AND AVG(price) > 20;
