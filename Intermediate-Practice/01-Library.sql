@@ -151,3 +151,12 @@ SELECT id,name FROM members WHERE id IN (1,3,5,7);
 SELECT title,price FROM books WHERE price IN (15.50,22.99,29.99) ORDER BY price DESC, title ASC;
 
 SELECT id,name FROM members WHERE id NOT IN (2,4,6);
+
+-- BETWEEN - Goal: Find values inside a range.
+
+SELECT title, price FROM books WHERE price BETWEEN 15 AND 30;
+SELECT title, price FROM books WHERE price BETWEEN 20 AND 40;
+SELECT title, stock FROM books WHERE stock BETWEEN 5 AND 15;
+SELECT borrow_date FROM borrow_history WHERE borrow_date BETWEEN '2026-07-07 12:00:00' AND '2026-07-10 17:25:00';
+
+SELECT title, price FROM books WHERE price BETWEEN 25 AND 50 ORDER BY price DESC, title ASC;
