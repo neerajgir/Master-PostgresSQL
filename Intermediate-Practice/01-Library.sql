@@ -67,3 +67,12 @@ VALUES
 (1, 6, '2026-07-14 09:45:00', FALSE),
 (4, 8, '2026-07-15 16:20:00', TRUE);
 
+
+SELECT title, price FROM books ORDER BY price ASC;
+SELECT title, price FROM books ORDER BY price DESC;
+
+SELECT title, stock FROM books ORDER BY stock ASC;
+SELECT title, stock FROM books ORDER BY stock DESC;
+
+SELECT name FROM members ORDER BY name ASC;
+
