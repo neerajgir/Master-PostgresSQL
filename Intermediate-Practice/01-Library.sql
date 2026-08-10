@@ -119,5 +119,17 @@ ORDER BY publishers ASC;
 SELECT DISTINCT metadata->>'language' AS Languages FROM books WHERE metadata->>'language' IS NOT NULL
 ORDER BY Languages ASC;
 
+-- LIKE - Goal: Search text using patterns.
+
+SELECT title FROM books WHERE title LIKE 'The%';
+SELECT title FROM books WHERE title LIKE '%Code';
+SELECT title FROM books WHERE title LIKE '%Java%';
+SELECT title, author FROM books WHERE author LIKE '%Martin%';
+
+SELECT title FROM books WHERE title LIKE '%Money%';
+
+SELECT name FROM members WHERE name LIKE 'A%';
+SELECT name FROM members WHERE name LIKE '%n';
+SELECT name FROM members WHERE name LIKE '%ah%';
 
 
