@@ -205,3 +205,21 @@ SELECT metadata->>'publisher', COUNT(*) FROM books GROUP BY metadata->>'publishe
 SELECT metadata->>'publisher', AVG(price) FROM books GROUP BY metadata->>'publisher';
 SELECT metadata->>'publisher', COUNT(stock) FROM books GROUP BY metadata->>'publisher';
 
+-- HAVING - HAVING is used to filter groups created by GROUP BY.
+
+SELECT author, COUNT(*) FROM books GROUP BY author HAVING COUNT(*) > 1;
+
+SELECT author, COUNT(*) FROM books GROUP BY author HAVING COUNT(*) > 2;
+
+SELECT author, AVG(price) AS average_book_price FROM books GROUP BY author HAVING AVG(price) > 20 ORDER BY average_book_price DESC;
+
+SELECT 
+    metadata->>'publisher' AS publisher, 
+    COUNT(*) AS book_count
+FROM books
+WHERE metadata->>'publisher' IS NOT NULL
+GROUP BY metadata->>'publisher'
+HAVING COUNT(*) > 1;
+
+
+SELECT author, SUM(stock) as total_stock FROM books GROUP BY author HAVING SUM(stock) > 10 ORDER BY total_stock DESC;
