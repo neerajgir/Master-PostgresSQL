@@ -106,4 +106,18 @@ SELECT title, price FROM books ORDER BY price DESC, title ASC LIMIT 5 OFFSET 5;
 -- Page 3: Books 11 to 15 (Skip 10)
 SELECT title, price FROM books ORDER BY price DESC, title ASC LIMIT 5 OFFSET 10;
 
+-- DISTINCT - Goal: Get unique values only.
+
+SELECT DISTINCT author FROM books;
+
+SELECT DISTINCT price FROM books ORDER BY price ASC;
+SELECT DISTINCT stock FROM books ORDER BY stock ASC;
+
+SELECT DISTINCT metadata->>'publisher' AS Publishers FROM books WHERE metadata->>'publisher' IS NOT NULL
+ORDER BY publishers ASC;
+
+SELECT DISTINCT metadata->>'language' AS Languages FROM books WHERE metadata->>'language' IS NOT NULL
+ORDER BY Languages ASC;
+
+
 
