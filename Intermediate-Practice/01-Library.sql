@@ -76,3 +76,6 @@ SELECT title, stock FROM books ORDER BY stock DESC;
 
 SELECT name FROM members ORDER BY name ASC;
 
+SELECT title, price FROM books ORDER BY price DESC, title ASC;
+
+
