@@ -160,3 +160,18 @@ SELECT title, stock FROM books WHERE stock BETWEEN 5 AND 15;
 SELECT borrow_date FROM borrow_history WHERE borrow_date BETWEEN '2026-07-07 12:00:00' AND '2026-07-10 17:25:00';
 
 SELECT title, price FROM books WHERE price BETWEEN 25 AND 50 ORDER BY price DESC, title ASC;
+
+
+-- IS NULL - This one is very important
+-- WHERE column IS NULL
+-- WHERE column IS NOT NULL
+
+-- 10. Aggregate Functions - These are extremely important for backend development.
+
+SELECT COUNT(*) FROM books;
+SELECT COUNT(*) FROM members;
+SELECT COUNT(*) FROM members WHERE is_active = true;
+SELECT COUNT(*) FROM borrow_history WHERE returned = true;
+SELECT COUNT(*) FROM books WHERE stock > 5;
+
+
