@@ -142,3 +142,12 @@ SELECT name FROM members WHERE name ILIKE '%ALI%';
 SELECT title, author FROM books WHERE author ILIKE '%robert%';
 SELECT title, author FROM books WHERE title ILIKE '%program%';
 
+-- IN - Goal: Check whether a value matches one of several values.
+
+SELECT title, author FROM books WHERE author IN ('James Clear', 'Morgan Housel', 'Cal Newport');
+SELECT title, stock FROM books WHERE stock IN (4, 5, 10, 15) ORDER BY price DESC, title ASC;
+
+SELECT id,name FROM members WHERE id IN (1,3,5,7);
+SELECT title,price FROM books WHERE price IN (15.50,22.99,29.99) ORDER BY price DESC, title ASC;
+
+SELECT id,name FROM members WHERE id NOT IN (2,4,6);
