@@ -240,3 +240,42 @@ SELECT title, price FROM books WHERE price BETWEEN 15 AND 40 ORDER BY price DESC
 SELECT author, ROUND(AVG(price), 2) AS average_price FROM books GROUP BY author HAVING AVG(price) > 20 ORDER BY average_price DESC;
 
 SELECT author, COUNT(*) AS total_books, AVG(price) AS average_price, SUM(stock) AS total_stock FROM books GROUP BY author HAVING COUNT(*) >= 2 AND AVG(price) > 20;
+
+
+-- Last 20 Queries without any help
+
+SELECT title, price FROM books ORDER BY price DESC, title ASC LIMIT 3;
+SELECT title, price FROM books ORDER BY price ASC, title ASC LIMIT 5;
+
+SELECT title, author
+FROM books LIMIT 6 OFFSET 5;
+
+SELECT DISTINCT author FROM books ORDER BY author ASC;
+SELECT DISTINCT metadata->>'publisher' AS Publisher FROM books WHERE metadata->>'publisher' IS NOT NULL ORDER BY publisher ASC;
+
+SELECT title, price FROM books WHERE title ILIKE '%the%' ORDER BY price DESC, title ASC;
+
+SELECT title, author, price, stock
+FROM books
+WHERE author IN ('James Clear', 'Morgan Housel', 'Cal Newport')
+ORDER BY price DESC, title ASC;
+
+SELECT title, author, price, stock
+FROM books WHERE price BETWEEN 20 AND 50 ORDER BY price DESC, title ASC;
+
+SELECT COUNT(title) AS total_books from books;
+SELECT COUNT(stock) AS total_stocks from books;
+
+SELECT ROUND(AVG(price), 2) AS average_book_price 
+FROM books;
+
+SELECT MIN(price) AS cheapest_book_price FROM books;
+SELECT MAX(price) AS expensive_book_price FROM books;
+
+SELECT author, COUNT(*) AS books_count FROM books GROUP BY author ORDER BY books_count DESC, author ASC;
+SELECT author, ROUND(AVG(price),2) AS average_price FROM books GROUP BY author ORDER BY average_price DESC, author ASC;
+
+SELECT author, COUNT(*) AS books_count FROM books GROUP BY author HAVING COUNT(*) > 1 ORDER BY books_count DESC, author ASC;
+SELECT author, ROUND(AVG(price),2) AS average_price FROM books GROUP BY author HAVING AVG(price) > 20 ORDER BY average_price DESC;
+
+SELECT author, SUM(stock) AS total_stock FROM books GROUP BY author ORDER BY total_stock DESC, author ASC LIMIT 5;
