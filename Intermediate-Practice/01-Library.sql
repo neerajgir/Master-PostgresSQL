@@ -90,3 +90,20 @@ SELECT * FROM members LIMIT 3;
 SELECT title, stock FROM books ORDER BY stock DESC, title DESC LIMIT 3;
 
 
+-- OFFSET - Goal: Skip a certain number of rows.
+
+SELECT title, price FROM books ORDER BY price DESC, title ASC OFFSET 3;
+SELECT title, price FROM books ORDER BY price DESC, title ASC LIMIT 3 OFFSET 3;
+SELECT title, price FROM books ORDER BY price DESC, title ASC LIMIT 5 OFFSET 5;
+SELECT title, price FROM books ORDER BY price DESC, title ASC LIMIT 5 OFFSET 10;
+
+-- Page 1: Books 1 to 5 (Skip 0)
+SELECT title, price FROM books ORDER BY price DESC, title ASC LIMIT 5 OFFSET 0;
+
+-- Page 2: Books 6 to 10 (Skip 5)
+SELECT title, price FROM books ORDER BY price DESC, title ASC LIMIT 5 OFFSET 5;
+
+-- Page 3: Books 11 to 15 (Skip 10)
+SELECT title, price FROM books ORDER BY price DESC, title ASC LIMIT 5 OFFSET 10;
+
+
