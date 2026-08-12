@@ -7,6 +7,7 @@ CREATE TABLE users (
 );
 
 ALTER TABLE users ALTER COLUMN username SET NOT NULL;
+ALTER TABLE users ALTER COLUMN email SET NOT NULL;
 
 ALTER TABLE users ADD CONSTRAINT users_email_unique UNIQUE (email);
 ALTER TABLE users ADD CONSTRAINT users_age_check CHECK(age >= 13);
@@ -70,8 +71,15 @@ ALTER TABLE productss ADD COLUMN sku VARCHAR(50) UNIQUE;
 ALTER TABLE productss DROP COLUMN stock;
 
 
+SELECT *
+FROM information_schema.columns
+WHERE table_name = 'users';
 
-
-
+SELECT
+    table_name,
+    constraint_name,
+    constraint_type
+FROM information_schema.table_constraints
+WHERE table_name IN ('users', 'orderss', 'productss');
 
 
