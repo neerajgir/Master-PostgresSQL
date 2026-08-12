@@ -17,6 +17,15 @@ ALTER TABLE users RENAME COLUMN username TO full_name;
 
 ALTER TABLE users ADD COLUMN country VARCHAR(100) DEFAULT 'Pakistan';
 
+ALTER TABLE users 
+ALTER COLUMN country DROP DEFAULT;
+
+ALTER TABLE users DROP CONSTRAINT users_age_check;
+
+ALTER TABLE users RENAME CONSTRAINT users_email_unique TO users_email_unique_constraint; 
+
+
+
 SELECT * FROM users;
 
 CREATE TABLE orderss (
@@ -41,6 +50,9 @@ ALTER TABLE orderss ALTER COLUMN order_status TYPE VARCHAR(100);
 
 ALTER TABLE orderss ADD COLUMN is_paid BOOLEAN DEFAULT false;
 
+ALTER TABLE orderss RENAME CONSTRAINT orders_amount_positive TO orders_amount_check; 
+
+
 CREATE TABLE productss (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100),
@@ -54,6 +66,8 @@ ALTER TABLE productss ADD CONSTRAINT products_price_positive CHECK (price > 0);
 ALTER TABLE productss ADD CONSTRAINT products_stock_non_negative CHECK (stock >= 0);
 
 ALTER TABLE productss ADD COLUMN sku VARCHAR(50) UNIQUE;
+
+ALTER TABLE productss DROP COLUMN stock;
 
 
 
