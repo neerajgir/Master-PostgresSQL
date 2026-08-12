@@ -87,3 +87,4 @@ RENAME TO films;
 ALTER TABLE films
 RENAME TO movies;
 SELECT * FROM movies;
+
