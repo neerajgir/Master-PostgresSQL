@@ -7,3 +7,6 @@ CREATE TABLE employees (
     is_active BOOLEAN DEFAULT true
 );
 
+SELECT * FROM employees;
+
+ALTER TABLE employees ADD COLUMN phone VARCHAR(20);
