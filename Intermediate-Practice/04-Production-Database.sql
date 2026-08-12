@@ -48,4 +48,14 @@ CREATE TABLE productss (
     stock INT
 );
 
-ALTER TABLE orderss ALTER COLUMN user_id SET NOT NULL;
+ALTER TABLE productss ALTER COLUMN name SET NOT NULL;
+
+ALTER TABLE productss ADD CONSTRAINT products_price_positive CHECK (price > 0);
+ALTER TABLE productss ADD CONSTRAINT products_stock_non_negative CHECK (stock >= 0);
+
+ALTER TABLE productss ADD COLUMN sku VARCHAR(50) UNIQUE;
+
+
+
+
+
