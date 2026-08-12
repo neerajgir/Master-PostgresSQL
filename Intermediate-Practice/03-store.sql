@@ -7,6 +7,19 @@ CREATE TABLE customers (
     city VARCHAR(50)
 );
 
+ALTER TABLE customers ALTER COLUMN name SET NOT NULL; 
+
+ALTER TABLE customers ADD CONSTRAINT customers_email_unique UNIQUE (email);
+
+ALTER TABLE customers ALTER COLUMN city TYPE VARCHAR(100);
+
+ALTER TABLE customers ADD COLUMN registered_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE customers RENAME phone TO phone_number;
+
+SELECT * FROM customers;
+
+
+
 CREATE TABLE orders (
     id SERIAL PRIMARY KEY,
     customer_id INT,
@@ -14,6 +27,8 @@ CREATE TABLE orders (
     status VARCHAR(30),
     created_at TIMESTAMP
 );
+
+
 
 CREATE TABLE products (
     id SERIAL PRIMARY KEY,
