@@ -14,7 +14,7 @@ ALTER TABLE employees ADD COLUMN joining_date TIMESTAMP DEFAULT NOW();
 
 ALTER TABLE employees RENAME COLUMN name TO full_name; 
 
-ALTER TABLE employees ALTER department TYPE VARCHAR(100);
+ALTER TABLE employees ALTER COLUMN department TYPE VARCHAR(100);
 
 ALTER TABLE employees RENAME TO company_employees;
 
@@ -30,3 +30,40 @@ ALTER TABLE company_employees DROP CONSTRAINT salary_positive;
 
 ALTER TABLE company_employees ALTER COLUMN is_active SET DEFAULT false;
 
+CREATE TABLE products (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    price NUMERIC(10, 2),
+    stock INT,
+    category VARCHAR(50)
+);
+
+ALTER TABLE products ADD COLUMN description TEXT;
+ALTER TABLE products ADD COLUMN sku VARCHAR(50) UNIQUE;
+
+ALTER TABLE products RENAME COLUMN name TO product_name;
+
+ALTER TABLE products ALTER COLUMN category TYPE VARCHAR(100);
+
+ALTER TABLE products ADD CONSTRAINT price_non_negative CHECK(price >= 0);
+ALTER TABLE products ADD CONSTRAINT stock_non_negative CHECK(stock >= 0);
+
+ALTER TABLE products ADD COLUMN is_available BOOLEAN DEFAULT true;
+
+ALTER TABLE products DROP COLUMN description;
+
+ALTER TABLE products RENAME TO store_products;
+
+
+ALTER TABLE store_products ALTER COLUMN product_name SET NOT NULL;
+ALTER TABLE store_products ADD CONSTRAINT unique_sku UNIQUE (sku);
+
+ALTER TABLE store_products ADD CONSTRAINT price CHECK(price > 0);
+ALTER TABLE store_products ADD CONSTRAINT stock CHECK(stock >= 0);
+
+ALTER TABLE store_products ALTER COLUMN is_available SET DEFAULT true;
+
+
+
+
+SELECT * FROM store_products;
