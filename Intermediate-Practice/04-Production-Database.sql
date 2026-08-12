@@ -73,3 +73,5 @@ ALTER TABLE productss DROP COLUMN stock;
 
 
 
+
+
