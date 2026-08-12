@@ -27,7 +27,19 @@ CREATE TABLE orderss (
     created_at TIMESTAMP
 );
 
+ALTER TABLE orderss ALTER COLUMN user_id SET NOT NULL;
 
+ALTER TABLE orderss ADD CONSTRAINT orders_user_fk Foreign Key (user_id) REFERENCES users (id);
+
+ALTER TABLE orderss ADD CONSTRAINT orders_amount_positive CHECK (amount > 0);
+
+ALTER TABLE orderss ALTER COLUMN created_at SET DEFAULT NOW();
+
+ALTER TABLE orderss RENAME COLUMN status TO order_status;
+
+ALTER TABLE orderss ALTER COLUMN order_status TYPE VARCHAR(100);
+
+ALTER TABLE orderss ADD COLUMN is_paid BOOLEAN DEFAULT false;
 
 CREATE TABLE productss (
     id SERIAL PRIMARY KEY,
@@ -35,3 +47,5 @@ CREATE TABLE productss (
     price NUMERIC(10, 2),
     stock INT
 );
+
+ALTER TABLE orderss ALTER COLUMN user_id SET NOT NULL;
