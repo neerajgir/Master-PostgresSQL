@@ -28,7 +28,17 @@ CREATE TABLE orders (
     created_at TIMESTAMP
 );
 
+ALTER TABLE orders ALTER COLUMN customer_id SET NOT NULL;
 
+ALTER TABLE orders ADD CONSTRAINT orders_total_positive CHECK (total > 0);
+
+ALTER TABLE orders ALTER COLUMN created_at SET DEFAULT NOW();
+
+ALTER TABLE orders RENAME status TO order_status;
+
+ALTER TABLE orders ADD COLUMN is_paid BOOLEAN DEFAULT false;
+
+SELECT * FROM orders;
 
 CREATE TABLE products (
     id SERIAL PRIMARY KEY,
