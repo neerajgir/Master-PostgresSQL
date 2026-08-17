@@ -57,3 +57,31 @@ ON s.class_id = c.class_id;
 SELECT s.name, c.class_name
 FROM students s
 CROSS JOIN classes c;
+
+-- 6️⃣ SELF JOIN (Very Common in Postgres)
+
+SELECT e.name AS employee, m.name AS manager
+FROM employees e
+LEFT JOIN employees m
+ON e.manager_id = m.employee_id;
+
+CREATE TABLE employees (
+  employee_id INT PRIMARY KEY,
+  name VARCHAR(50) NOT NULL,
+  manager_id INT
+);
+
+INSERT INTO employees (employee_id, name, manager_id) VALUES
+(1, 'Rahul', NULL),      -- Top-level manager
+(2, 'Anjali', 1),        -- Reports to Rahul
+(3, 'Aman', 1),          -- Reports to Rahul
+(4, 'Neha', 2);          -- Reports to Anjali
+
+-- 🔁 SELF JOIN Query (Employee → Manager)
+
+SELECT 
+  e.name AS employee,
+  m.name AS manager
+FROM employees e
+LEFT JOIN employees m
+ON e.manager_id = m.employee_id;
