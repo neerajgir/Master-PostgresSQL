@@ -37,4 +37,9 @@ FROM students s
 LEFT JOIN classes c
 ON s.class_id = c.class_id;
 
+-- 3️⃣ RIGHT JOIN (RIGHT OUTER JOIN)
 
+SELECT s.name, c.class_name
+FROM students s
+RIGHT JOIN classes c
+ON s.class_id = c.class_id;
