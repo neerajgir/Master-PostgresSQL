@@ -94,3 +94,10 @@ FROM students s
 INNER JOIN classes c
 ON s.class_id = c.class_id;
 SELECT * FROM student_classes;
+
+-- HAVING QUERY
+
+SELECT class_id, COUNT(*) AS total_students
+FROM students
+GROUP BY class_id
+HAVING COUNT(*) > 1;
