@@ -106,3 +106,11 @@ HAVING COUNT(*) > 1;
 SELECT *
 FROM students
 WHERE class_id = 101;
+
+--  Combined Example (MOST IMPORTANT) First filter rows, then filter groups
+
+SELECT class_id, COUNT(*) AS total_students
+FROM students
+WHERE class_id IS NOT NULL
+GROUP BY class_id
+HAVING COUNT(*) > 1;
