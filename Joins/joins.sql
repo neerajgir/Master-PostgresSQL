@@ -85,3 +85,12 @@ SELECT
 FROM employees e
 LEFT JOIN employees m
 ON e.manager_id = m.employee_id;
+
+-- VIEW QUERY (Optional but useful)
+
+CREATE VIEW student_classes AS
+SELECT s.name, c.class_name
+FROM students s
+INNER JOIN classes c
+ON s.class_id = c.class_id;
+SELECT * FROM student_classes;
