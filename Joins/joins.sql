@@ -101,3 +101,8 @@ SELECT class_id, COUNT(*) AS total_students
 FROM students
 GROUP BY class_id
 HAVING COUNT(*) > 1;
+
+-- WHERE QUERY
+SELECT *
+FROM students
+WHERE class_id = 101;
