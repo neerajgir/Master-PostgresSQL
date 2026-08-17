@@ -29,3 +29,12 @@ SELECT s.name, c.class_name
 FROM students s
 INNER JOIN classes c
 ON s.class_id = c.class_id;
+
+-- 2️⃣ LEFT JOIN (LEFT OUTER JOIN)
+
+SELECT s.name, c.class_name
+FROM students s
+LEFT JOIN classes c
+ON s.class_id = c.class_id;
+
+
