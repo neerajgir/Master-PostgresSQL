@@ -82,3 +82,18 @@ END;
 $$;
 
 CALL add_youtuber('Tanay Pratap', 'Tanay Pratap', 'Web Development', 0.50);
+
+
+-- Deactivate a Channel
+CREATE PROCEDURE deactivate_youtuber(p_channel VARCHAR)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE tech_youtubers
+    SET active = false
+    WHERE channel = p_channel;
+END;
+$$;
+
+CALL deactivate_youtuber('Coding Shuttle');
+
