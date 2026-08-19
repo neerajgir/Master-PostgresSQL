@@ -20,3 +20,15 @@ SELECT * FROM tech_youtubers;
 
 --  User Defined Functions (UDF)
 
+CREATE FUNCTION total_youtubers()
+RETURNS INTEGER
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    --Logic 
+    RETURN (SELECT COUNT(*) FROM tech_youtubers);
+END;
+$$;
+
+SELECT  total_youtubers();
+
