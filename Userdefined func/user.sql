@@ -97,3 +97,15 @@ $$;
 
 CALL deactivate_youtuber('Coding Shuttle');
 
+-- Transaction Handling
+CREATE PROCEDURE safe_delete(p_channel VARCHAR)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    DELETE FROM tech_youtubers WHERE channel = p_channel;
+
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'Channel not found';
+    END IF;
+END;
+$$;
