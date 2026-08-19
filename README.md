@@ -1,33 +1,24 @@
-# 🐘 Master PostgreSQL Guide (Hinglish Edition)
+# 🐘 Master PostgreSQL Guide (Hinglish Edition) - UserDefined Focus
 
-Welcome! Yeh guide PostgreSQL seekhne aur mastery hasil karne ke liye ek absolute complete, beginner-friendly cheatsheet hai. Chahe aap Windows use kar rahe ho ya Mac, isme saare installation steps, terminal commands, SQL queries, aur real-world examples super simple **Hinglish** language me samjhaye gaye hain.
+Welcome! Yeh guide **User Defined Functions aur Procedures** seekhne ke liye ek complete reference hai PostgreSQL ke liye. Chahe aap beginner ho ya experience developer, isme functions aur procedures ka difference samajhne ke liye saare concepts deep level par cover kiye gaye hain.
 
 ---
 
 ## 📌 Index / Table of Contents
+
 1. [PostgreSQL Ka Introduction](#1-postgresql-ka-introduction)
-2. [Installation Guide (Windows & Mac)](#2-installation-guide-windows--mac)
-   - [Windows Installation](#windows-installation)
-   - [Mac Installation](#mac-installation)
-   - [Code Editor Setup (VS Code & pgAdmin)](#code-editor-setup)
-3. [Terminal & CLI Basics (psql)](#3-terminal--cli-basics-psql)
-   - [Password Command / Reset](#password-command--reset)
-   - [Connect Command](#connect-command)
-   - [Essential Terminal Commands](#essential-terminal-commands)
-4. [Database Operations (Create & Drop)](#4-database-operations)
-5. [Table Operations & Basics](#5-table-operations--basics)
-   - [Create Table](#create-table)
-   - [Insert Data](#insert-data)
-   - [Select / Query Data](#select--query-data)
-   - [Update & Delete Row](#update--delete-row)
-   - [Delete Table Query (DROP vs TRUNCATE)](#delete-table-query)
-6. [Quick Cheat Sheet](#6-quick-cheat-sheet)
+2. [User Defined Functions (UDF)](#2-user-defined-functions-udf)
+3. [Procedures in PostgreSQL](#3-procedures-in-postgresql)
+4. [Key Differences: Functions vs Procedures](#4-key-differences-functions-vs-procedures)
+5. [Real-Life Usages](#5-real-life-usages)
+6. [Quick Code Snippets](#6-quick-code-snippets)
+7. [Terminal Commands Reference](#7-terminal-commands-reference)
 
 ---
 
 ## 1. 📖 PostgreSQL Ka Introduction
 
-**PostgreSQL** (jisey hum *Postgres* bhi kehte hain) ek super powerful, open-source **Relational Database Management System (RDBMS)** hai.
+**PostgreSQL** (jise hum Postgres bhi kehte hain) ek super powerful, open-source **Relational Database Management System (RDBMS)** hai.
 
 ### Key Highlights:
 - **Relational Data:** Yeh data ko Tables (Rows aur Columns) me store karta hai.
@@ -37,275 +28,313 @@ Welcome! Yeh guide PostgreSQL seekhne aur mastery hasil karne ke liye ek absolut
 
 ---
 
-## 2. 💻 Installation Guide (Windows & Mac)
+## 2. 🔧 User Defined Functions (UDF)
 
-### 🪟 Windows Installation
-1. Official website par jao: [PostgreSQL Downloads for Windows](https://www.postgresql.org/download/windows/)
-2. **EDB Installer** download karo.
-3. Setup `.exe` file run karo.
-4. Installation ke dauran:
-   - Installation Directory default rehne do.
-   - Components me **PostgreSQL Server, pgAdmin 4, Command Line Tools** select rakho.
-   - **Password Set Karo:** Superuser (`postgres`) ke liye ek strong password set karo aur **ise yaad rakho!**
-   - Port Number: Default `5432` rehne do.
-5. Finish par click karo.
+Functions in PostgreSQL **value return karte hain**. Inhe `CREATE FUNCTION` command se banata hai.
 
-> **Environment Variable Set Karna (Important for Windows Terminal):**
-> 1. Start Menu me search karo **"Environment Variables"**.
-> 2. `Path` par edit click karo.
-> 3. New add karo: `C:\Program Files\PostgreSQL\<version>\bin`
-> 4. OK press karke save kar do.
-
----
-
-### 🍎 Mac Installation
-Mac me install karne ka sabse best aur easy tarika hai **Homebrew**.
-
-1. Terminal kholo aur command chalao:
-   ```bash
-   brew install postgresql@15
-   ```
-2. PostgreSQL service ko start karo:
-   ```bash
-   brew services start postgresql@15
-   ```
-3. Verify karne ke liye test karo:
-   ```bash
-   psql postgres
-   ```
-
-*(Alternative method: Aap [Postgres.app](https://postgresapp.com/) ya EDB installer GUI download karke bhi install kar sakte ho).*
-
----
-
-### 🛠️ Code Editor Setup
-
-#### 1. pgAdmin 4 (GUI Tool - Included in Installer)
-- PostreSQL ke saath pgAdmin automatically install ho jata hai.
-- Server connect karne ke liye bas apna installation ke waqt dala hua **Password** enter karo.
-
-#### 2. VS Code Extension
-Aap Visual Studio Code se bhi directly database run kar sakte ho:
-- VS Code open karo -> Extensions (`Ctrl + Shift + X` ya `Cmd + Shift + X`).
-- Search karo: **PostgreSQL** (by Chris Kolkman) ya **Database Client**.
-- Connection Settings:
-  - **Host:** `localhost`
-  - **User:** `postgres`
-  - **Password:** `<Aapka Password>`
-  - **Port:** `5432`
-
----
-
-## 3. ⚡ Terminal & CLI Basics (psql)
-
-PostgreSQL ke interactive terminal tool ko **`psql`** kehte hain.
-
-### 🔑 Connect Command
-Terminal / Command Prompt open karo aur yeh command likho:
-
-```bash
-# General Connection Command
-psql -U postgres -h localhost -p 5432
-```
-- `-U postgres`: User specify karta hai (`postgres` default admin profile hoti hai).
-- `-h localhost`: Server address.
-- `-p 5432`: Default port.
-
-Direct Connection (Agar local machine par ho):
-```bash
-psql -U postgres
-```
-*(Press Enter and type your password when prompted)*
-
----
-
-### 🔐 Password Command / Reset
-
-#### 1. psql ke andar password change karna:
-Agar aap log in ho aur `postgres` user ka password change karna chahte ho:
+### Function Syntax:
 ```sql
-ALTER USER postgres WITH PASSWORD 'new_secure_password';
+CREATE FUNCTION function_name(parameters)
+RETURNS return_type
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    -- Logic
+    RETURN value;
+END;
+$$;
 ```
 
-#### 2. Terminal shortcut command inside psql:
+### Real-Life Example: Count Total YouTubers
 ```sql
-\password postgres
+-- Function jo total rows count karta hai
+CREATE FUNCTION total_youtubers()
+RETURNS INTEGER
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    RETURN (SELECT COUNT(*) FROM tech_youtubers);
+END;
+$$;
+
+-- Function call karna
+SELECT total_youtubers();
+-- Output: 5
 ```
-*(Yeh prompt karega naya password enter karne ke liye).*
+
+### Example: Categorize Channel by Subscribers
+```sql
+-- Function jo channel category batata hai
+CREATE FUNCTION channel_category(subs NUMERIC)
+RETURNS VARCHAR
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    IF subs >= 1 THEN
+        RETURN 'Big Channel';
+    ELSE
+        RETURN 'Growing Channel';
+    END IF;
+END;
+$$;
+
+-- Use karna
+SELECT name, channel_category(subscribers_millions)
+FROM tech_youtubers;
+```
+
+### Key Points About Functions:
+- ✅ **Must return a value** (even if void/NULL)
+- ✅ **Can be used in SQL queries** (SELECT, WHERE, JOIN)
+- ✅ **Cannot have OUT parameters**
+- ✅ **Can be deterministic or stochastic**
+- ❌ **Cannot modify database state** (ideally, though PL/pgSQL can do it)
 
 ---
 
-### 🛠️ Essential Terminal Commands (`psql` Special Commands)
+## 3. 🛠️ Procedures in PostgreSQL
 
-| Command | Work / Description |
-| :--- | :--- |
-| `\l` | Sabhi Databases ki list dekhein (List databases) |
-| `\c db_name` | Kisi specific database se connect / switch karein |
-| `\dt` | Current database ke sabhi tables ki list dekhein |
-| `\d table_name` | Table ka structure / schema dekhein |
-| `\du` | Sabhi users aur unki roles/permissions dekhein |
-| `\q` | psql terminal se exit / quit karein |
-| `\?` | Help screen open karein (psql commands ke liye) |
-| `\h` | SQL syntax ki help dekhein |
+Procedures in PostgreSQL **actions perform karte hain** (INSERT, UPDATE, DELETE) lekin **koi value return nahi karte**. Inhe PostgreSQL 11+ version se official support mila hai.
+
+### Procedure Syntax:
+```sql
+CREATE PROCEDURE procedure_name(parameters)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    -- Logic (INSERT, UPDATE, DELETE)
+    -- No RETURN statement needed
+END;
+$$;
+```
+
+### Real-Life Example: Add a New YouTuber
+```sql
+-- Procedure jo nayi row insert karta hai
+CREATE PROCEDURE add_youtuber(
+    p_name VARCHAR,
+    p_channel VARCHAR,
+    p_tech VARCHAR,
+    p_subs NUMERIC
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    INSERT INTO tech_youtubers (name, channel, tech, subscribers_millions)
+    VALUES (p_name, p_channel, p_tech, p_subs);
+END;
+$$;
+
+-- Procedure call karna (CALL command se)
+CALL add_youtuber('Tanay Pratap', 'Tanay Pratap', 'Web Development', 0.50);
+```
+
+### Example: Deactivate a Channel
+```sql
+-- Procedure jo channel ko deactivate karta hai
+CREATE PROCEDURE deactivate_youtuber(p_channel VARCHAR)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE tech_youtubers
+    SET active = false
+    WHERE channel = p_channel;
+END;
+$$;
+
+CALL deactivate_youtuber('Coding Shuttle');
+```
+
+### Example: Safe Delete with Transaction Handling
+```sql
+-- Procedure jo row delete karta hai aur check karta hai
+CREATE PROCEDURE safe_delete(p_channel VARCHAR)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    DELETE FROM tech_youtubers WHERE channel = p_channel;
+
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'Channel not found';
+    END IF;
+END;
+$$;
+
+CALL safe_delete('Non Existent Channel');
+-- Error: Channel not found
+```
+
+### Key Points About Procedures:
+- ✅ **No return value** needed (void)
+- ✅ **Can have IN, OUT, INOUT parameters**
+- ✅ **Can perform DML operations** (INSERT, UPDATE, DELETE)
+- ✅ **Must be called using `CALL` command**
+- ✅ **Can handle transactions** (COMMIT, ROLLBACK)
+- ❌ **Cannot be used in SQL queries directly**
 
 ---
 
-## 4. 🗄️ Database Operations
+## 4. ⚖️ Key Differences: Functions vs Procedures
 
-### ➕ Create Database
-Naya database banane ke liye query:
+| Aspect | Function | Procedure |
+|--------|----------|-----------|
+| **Return Value** | Must return a value | No return value (void) |
+| **Usage** | `SELECT function()` | `CALL procedure()` |
+| **DML Operations** | ❌ Limited (READ only) | ✅ INSERT, UPDATE, DELETE allowed |
+| **Parameters** | Only IN parameters | IN, OUT, INOUT parameters |
+| **Transaction Control** | ❌ No COMMIT/ROLLBACK | ✅ Can use COMMIT, ROLLBACK |
+| **Performance** | Can be used in expressions | Separate execution block |
+| **PostgreSQL Version** | Always supported | PostgreSQL 11+ |
 
-```sql
-CREATE DATABASE my_master_db;
-```
-
-> **Note:** Query ke end me semicolon (`;`) lagana zaroori hai!
-
-### ❌ Drop / Delete Database
-Kisi existing database ko permanent delete karne ke liye:
-
-```sql
-DROP DATABASE my_master_db;
-```
-
-⚠️ **Warning:** Drop karne se pehle ensure kar lein ki aap us database se filhaal connected na ho. Agar connected ho, toh pehle doosre DB me switch karein (`\c postgres`), phir drop karein.
-
----
-
-## 5. 📊 Table Operations & Basics
-
-Let's learn basic SQL CRUD (Create, Read, Update, Delete) operations.
-
-Pehle apne database se connect ho jayein:
-```sql
-\c my_master_db;
-```
-
----
-
-### 1️⃣ Create Table
-Ek `users` naam ka table banate hain:
-
-```sql
-CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    age INT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-```
-
----
-
-### 2️⃣ Insert Data (Create)
-Table me row add karne ke liye:
+### Quick Comparison Example:
 
 ```sql
--- Single Row Insert
-INSERT INTO users (name, email, age) 
-VALUES ('Neeraj Goswami', 'neeraj@example.com', 24);
+-- Function: Returns a value, can be used in SELECT
+CREATE FUNCTION get_channel_count()
+RETURNS INTEGER
+AS $$ SELECT COUNT(*) FROM tech_youtubers; $$;
 
--- Multiple Rows Insert
-INSERT INTO users (name, email, age) 
-VALUES 
-    ('Rahul Sharma', 'rahul@example.com', 22),
-    ('Priya Verma', 'priya@example.com', 25);
+-- Procedure: Performs action, must be called separately
+CREATE PROCEDURE add_new_youtuber(p_name VARCHAR)
+LANGUAGE plpgsql
+AS $$ INSERT INTO tech_youtubers (name) VALUES (p_name); $$;
 ```
 
 ---
 
-### 3️⃣ Select Data (Read)
-Data dekhne ke liye queries:
+## 5. 🌟 Real-Life Usages
 
+### When to Use FUNCTIONS:
+1. **Data Validation:** Validate input data before storing
+2. **Calculations:** Compute values (tax, discounts, totals)
+3. **Format Conversion:** Convert data formats (date to string, etc.)
+4. **Business Logic:** Reusable logic across multiple queries
+5. **Indexes & Views:** Can be used in CREATE VIEW, computed columns
+
+### When to Use PROCEDURES:
+1. **Batch Operations:** Multiple INSERT/UPDATE/DELETE in one call
+2. **Complex Transactions:** Transactions with error handling
+3. **Administrative Tasks:** Database maintenance, backup operations
+4. **API-Like Endpoints:** Exposing database operations to applications
+5. **Bulk Data Processing:** Process large datasets efficiently
+
+### Real-World Scenario: E-Commerce Order Processing
+
+**Function - Calculate Discount:**
 ```sql
--- Saara data dekhne ke liye
-SELECT * FROM users;
+CREATE FUNCTION calculate_discount(total_amount NUMERIC)
+RETURNS NUMERIC
+AS $$
+DECLARE
+    discount_percent NUMERIC := 0;
+BEGIN
+    IF total_amount > 10000 THEN
+        discount_percent := 10;
+    ELSIF total_amount > 5000 THEN
+        discount_percent := 5;
+    END IF;
+    RETURN total_amount * (discount_percent / 100);
+END;
+$$;
+```
 
--- Specific columns dekhne ke liye
-SELECT name, email FROM users;
+**Procedure - Process Order:**
+```sql
+CREATE PROCEDURE process_order(
+    p_customer_id INTEGER,
+    p_product_id INTEGER,
+    p_quantity INTEGER
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_order_id INTEGER;
+BEGIN
+    -- Insert order
+    INSERT INTO orders (customer_id, product_id, quantity, status)
+    VALUES (p_customer_id, p_product_id, p_quantity, 'processing');
+    
+    GET DIAGNOSTICS v_order_id = ROW_COUNT;
+    
+    -- Update product stock
+    UPDATE products SET stock = stock - p_quantity WHERE id = p_product_id;
+    
+    -- Log the transaction
+    INSERT INTO order_log (order_id, action, timestamp)
+    VALUES (v_order_id, 'order_processed', NOW());
+    
+    COMMIT;
+END;
+$$;
 
--- Condition (WHERE) ke sath
-SELECT * FROM users WHERE age > 23;
+CALL process_order(123, 456, 2);
 ```
 
 ---
 
-### 4️⃣ Update Data
-Existing record modify karne ke liye:
+## 6. 💻 Quick Code Snippets
 
+### Function with Table Reference
 ```sql
-UPDATE users 
-SET age = 25 
-WHERE name = 'Neeraj Goswami';
+CREATE OR REPLACE FUNCTION get_youtubers_by_tech(p_tech VARCHAR)
+RETURNS TABLE(name VARCHAR, channel VARCHAR)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT t.name, t.channel
+    FROM tech_youtubers t
+    WHERE t.tech = p_tech;
+END;
+$$;
+
+-- Use: SELECT * FROM get_youtubers_by_tech('JavaScript');
+```
+
+### Procedure with OUT Parameter
+```sql
+CREATE PROCEDURE get_user_count(OUT count_val INTEGER)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    SELECT COUNT(*) INTO count_val FROM users;
+END;
+$$;
+
+CALL get_user_count(/* output will be stored in this variable */);
 ```
 
 ---
 
-### 5️⃣ Delete Row
-Specific data row delete karne ke liye:
+## 7. ⌨️ Terminal Commands Reference
 
-```sql
-DELETE FROM users 
-WHERE id = 2;
-```
-
----
-
-### 🗑️ Delete Table Query (DROP vs TRUNCATE)
-
-Jab aapko pure table par action lena ho:
-
-#### Option A: `TRUNCATE TABLE` (Data saaf karo, structure rakho)
-Yeh table ke andar ka **saara data delete** kar deta hai, lekin table aur uske columns bane rehte hain.
-
-```sql
-TRUNCATE TABLE users;
-```
-
-#### Option B: `DROP TABLE` (Pure table ko hi khatam karo)
-Yeh table aur uske andar ka **poora data permanent delete** kar deta hai.
-
-```sql
-DROP TABLE users;
-```
+| Command | Description |
+|---------|-------------|
+| `\l` | List all databases |
+| `\c db_name` | Connect to specific database |
+| `\dt` | List all tables in current database |
+| `\d table_name` | Show table structure/schema |
+| `\du` | List all users and roles |
+| `\df` | List all functions |
+| `\dp` | List access privileges |
+| `\p` | Show query buffer |
+| `\i file.sql` | Execute SQL file |
+| `\q` | Quit psql terminal |
 
 ---
 
-## 6. 🚀 Quick Cheat Sheet
+## 🎯 Pro Tips (Hinglish)
 
-```sql
--- 1. Create DB
-CREATE DATABASE tech_db;
+1. **Function always return karega value** - भले hi koi value ho ya NULL.
+2. **Procedure sirf kaam karega** - INSERT, UPDATE, DELETE karna.
+3. **PostgreSQL 11+ mein Procedures official support karte hain** - Purane versions mein DO block use karna padta tha.
+4. **Function ko SELECT query mein use kar sakte ho** - Procedure ko use nahi kar sakte.
+5. **Procedure mein transaction handle kar sakte ho** - COMMIT aur ROLLBACK use kar sakte ho.
 
--- 2. Switch DB (In psql)
-\c tech_db;
-
--- 3. Create Table
-CREATE TABLE products (
-    id SERIAL PRIMARY KEY,
-    title VARCHAR(50),
-    price NUMERIC(10, 2)
-);
-
--- 4. Check Table Schema
-\d products
-
--- 5. Insert Record
-INSERT INTO products (title, price) VALUES ('Laptop', 55000.00);
-
--- 6. Fetch Records
-SELECT * FROM products;
-
--- 7. Drop Table
-DROP TABLE products;
-
--- 8. Exit Terminal
-\q
-```
+🚫 **Common Mistake:** Function mein INSERT/UPDATE mat karo (generally), warna confusion ho sakti hai. Procedures ke liye banaya gaya hai.
 
 ---
 
-🎯 **Pro Tip:** Semicolon `;` lagana kabhi mat bhoolna query ke end me, warna terminal response nahi dega aur click-wait karta rahega!
+Happy Coding! 🐘💻
 
-Happy Coding! 🚀
+*(Yeh guide 2026 ke hisaab se banaya gaya hai, PostgreSQL latest features cover karta hai.)*
