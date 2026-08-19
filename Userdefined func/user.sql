@@ -65,3 +65,20 @@ $$;
 SELECT name, channel_category(subscribers_millions)
 FROM tech_youtubers;
 
+-- Stored Procedures
+
+CREATE PROCEDURE add_youtuber(
+    p_name VARCHAR,
+    p_channel VARCHAR,
+    p_tech VARCHAR,
+    p_subs NUMERIC
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    INSERT INTO tech_youtubers (name, channel, tech, subscribers_millions)
+    VALUES (p_name, p_channel, p_tech, p_subs);
+END;
+$$;
+
+CALL add_youtuber('Tanay Pratap', 'Tanay Pratap', 'Web Development', 0.50);
