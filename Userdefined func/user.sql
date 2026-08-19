@@ -46,3 +46,22 @@ END;
 $$;
 
 SELECT * FROM get_youtubers_by_tech('JavaScript');
+
+-- Check if Channel is Big or Small
+
+CREATE FUNCTION channel_category(subs NUMERIC)
+RETURNS VARCHAR
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    IF subs >= 1 THEN
+        RETURN 'Big Channel';
+    ELSE
+        RETURN 'Growing Channel';
+    END IF;
+END;
+$$;
+
+SELECT name, channel_category(subscribers_millions)
+FROM tech_youtubers;
+
