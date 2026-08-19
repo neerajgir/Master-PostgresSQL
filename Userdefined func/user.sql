@@ -32,3 +32,17 @@ $$;
 
 SELECT  total_youtubers();
 
+-- Get YouTubers by Tech
+
+CREATE OR REPLACE FUNCTION get_youtubers_by_tech(p_tech VARCHAR) 
+RETURNS TABLE(name VARCHAR, channel VARCHAR) 
+LANGUAGE plpgsql AS $$ 
+BEGIN 
+    RETURN QUERY 
+    SELECT t.name, t.channel -- 't.' resolves the ambiguity
+    FROM tech_youtubers t    -- 't' is the table alias
+    WHERE t.tech = p_tech; 
+END; 
+$$;
+
+SELECT * FROM get_youtubers_by_tech('JavaScript');
